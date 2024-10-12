@@ -1,0 +1,11 @@
+# depslib dependency file v1.0
+1728689274 source:c:\programacion\juegogreed\proyectojuegogreed\menu.cpp
+	<iostream>
+	"Menu.h"
+
+1728683800 c:\programacion\juegogreed\proyectojuegogreed\menu.h
+
+1728689245 source:c:\programacion\juegogreed\proyectojuegogreed\main.cpp
+	<iostream>
+	"Menu.h"
+
