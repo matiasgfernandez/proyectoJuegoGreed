@@ -22,15 +22,20 @@ void TirarDadosBloqueadores(int (&DadosBloqueadores)[2]){
     DadosBloqueadores[i]= TirarDado();
   }
 }
+void MostrarDadosBloqueadores(int(&DadosBloqueadores)[2]){
+     cout << endl;
+cout << "                      _______" << endl;
+cout << "                     |"<<"   |"<< "   |" <<endl;
+cout << "  Dados bloqueadores:| " << DadosBloqueadores[0] << " | " << DadosBloqueadores[1] << " |" << endl;
+cout << "                     |___|___|" << endl;
+    }
+
 ///funcion jugar, es la que se le pasa al menu para que pueda correr el juego
 void JugarContraCPU(){
     int DadosBloqueadores[2]{};
     int cantidadDeDados=5;
     int daditos[cantidadDeDados];
     TirarDadosBloqueadores(DadosBloqueadores);
-    ///esto solo esta aca para desmostrar que efectivamente esta funcionando
-    for(int i=0;i<2;i++){
-        cout<<"Dado bloqueador #"<<i+1<<":"<<DadosBloqueadores[i]<<endl;
-    }
+    MostrarDadosBloqueadores(DadosBloqueadores);
     TiradaDeLosDados(daditos,cantidadDeDados);
 }
