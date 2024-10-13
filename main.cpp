@@ -6,7 +6,6 @@
 int main(){
 srand(time(0));
 int opcion;
-srand(time(0));
 do{
 ///menu
 opcion= menu();
