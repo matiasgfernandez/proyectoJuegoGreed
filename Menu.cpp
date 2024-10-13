@@ -1,5 +1,6 @@
 #include <iostream>
 #include "Menu.h"
+#include "Juego.h"
 using namespace std;
 
 int  menu(){
@@ -21,7 +22,7 @@ int  menu(){
 void EjecutarMenu(int opcionElegida){
 switch(opcionElegida){
 case 1:
-    cout<< "juego contra cbu"<<endl;
+    JugarContraCPU();
     break;
 case 2:
     cout<< "juego de dos jugadores"<<endl;
