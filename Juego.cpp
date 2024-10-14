@@ -6,8 +6,31 @@ using namespace std;
 int TirarDado(){
 return rand() % 6+1;
 }
+///funcion para saber que dado coincide con un dado bloqueador
+int DadosQueCoincidenConDadosBloqueadores(int dados[],int cantidad, int DadosBloqueadoresJugador1[]){
+int CoincideConDadoBloqueador=0;
+    if(DadosBloqueadoresJugador1[0]!=DadosBloqueadoresJugador1[1]){
+    for(int i=0;i<2;i++){
+        for(int j=0;j<cantidad;j++){
+            if(dados[j]==DadosBloqueadoresJugador1[i]){
+                cout<< "El dado#"<<j+1<< " coincide con el dado bloqueador #"<<i+1<<endl;
+               CoincideConDadoBloqueador++;
+            }
+        }
+    }
+}else{
+    for(int i=0;i<cantidad;i++){
+            if(dados[i]==DadosBloqueadoresJugador1[0]){
+                cout<< "El dado#"<<i+1<< " coincide con los dados bloqueadores"<<endl;
+               CoincideConDadoBloqueador++;
+}
+}
+}
+cantidad-=CoincideConDadoBloqueador;
+return cantidad;
+}
 ///funcion para tirar los dados, en caso de querer quitar dados habria que restarle la cantidad a la variable "cantidad"
-void TiradaDeLosDados(int Dados[],int Cantidad)
+int TiradaDeLosDados(int Dados[],int Cantidad, int DadosBloqueadoresJugador1[])
 {
      for(int i=0;i<Cantidad;i++){
             Dados[i]=TirarDado();
@@ -15,6 +38,8 @@ void TiradaDeLosDados(int Dados[],int Cantidad)
     for(int j=0;j<Cantidad;j++){
     cout<< "Dado #" <<j+1<<":"<<Dados[j]<<endl;
     }
+ Cantidad=DadosQueCoincidenConDadosBloqueadores(Dados,Cantidad,DadosBloqueadoresJugador1);
+ return Cantidad;
 }
 ///funcion que tira los dados bloqueadores (la variable esta pasada por referencia)
 void TirarDadosBloqueadores(int (&DadosBloqueadoresJugador1)[2],int (&DadosBloqueadoresJugador2)[2]){
@@ -63,6 +88,6 @@ void JugarContraCPU(){
     TirarDadosBloqueadores(DadosBloqueadoresJugador1,DadosBloqueadoresJugador2);
 ///muestra los dados bloqueadores
     MostrarDadosBloqueadores(DadosBloqueadoresJugador1);
-///simula una tirada de dados
-    TiradaDeLosDados(daditos,cantidadDeDados);
+///simula una tirada de dados y te dice que dados coinciden con un dado bloqueador
+ cantidadDeDados =TiradaDeLosDados(daditos,cantidadDeDados,DadosBloqueadoresJugador1);
 }
