@@ -40,3 +40,24 @@
 	"Juego.h"
 	<ctime>
 
+1728950344 source:c:\users\mat\desktop\utn\git\proyectojuegogreed\juego.cpp
+	<iostream>
+	<ctime>
+	"Juego.h"
+
+1728950344 c:\users\mat\desktop\utn\git\proyectojuegogreed\juego.h
+
+1728785261 source:c:\users\mat\desktop\utn\git\proyectojuegogreed\main.cpp
+	<iostream>
+	<ctime>
+	"Menu.h"
+	"Juego.h"
+	<ctime>
+
+1728683800 c:\users\mat\desktop\utn\git\proyectojuegogreed\menu.h
+
+1728783415 source:c:\users\mat\desktop\utn\git\proyectojuegogreed\menu.cpp
+	<iostream>
+	"Menu.h"
+	"Juego.h"
+

@@ -2,6 +2,7 @@
 #include <ctime>
 #include "Juego.h"
 using namespace std;
+/// Hola grupo, testeando
 ///funcion que tira un dado
 int TirarDado(){
 return rand() % 6+1;
