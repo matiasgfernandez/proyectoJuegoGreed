@@ -2,7 +2,7 @@
 #include <ctime>
 #include "Juego.h"
 using namespace std;
-/// Hola grupo, testeando
+
 ///funcion que tira un dado
 int TirarDado(){
 return rand() % 6+1;
@@ -43,7 +43,7 @@ int TiradaDeLosDados(int Dados[],int Cantidad, int DadosBloqueadoresJugador1[])
  return Cantidad;
 }
 ///funcion que tira los dados bloqueadores (la variable esta pasada por referencia)
-void TirarDadosBloqueadores(int (&DadosBloqueadoresJugador1)[2],int (&DadosBloqueadoresJugador2)[2]){
+void TirarDadosBloqueadores(int (DadosBloqueadoresJugador1)[],int (DadosBloqueadoresJugador2)[]){
   for(int i=0;i<2;i++){
     DadosBloqueadoresJugador1[i]= TirarDado();
     DadosBloqueadoresJugador2[i]= TirarDado();
@@ -59,9 +59,12 @@ cout << "                     |___|___|" << endl;
     }
 ///pide nombre del jugador
 string PedirNombreJugador(){
+    ///ignora el enter anterior
+    (cin. ignore());
         string nombre;
       cout<< "ingrese su nombre: ";
-      cin>>nombre;
+      ///Guarda en el cin hasta que haya un enter
+      getline(cin, nombre);
 
       return nombre;
     }
