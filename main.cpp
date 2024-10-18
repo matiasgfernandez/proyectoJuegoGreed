@@ -4,8 +4,10 @@
 #include "Juego.h"
 #include <ctime>
 int main(){
+///tira un numero random diferente por cada segundo que pasa
 srand(time(0));
 int opcion;
+///ciclo para que el menu se ejecute hasta que el usuario ingrese 0
 do{
 ///menu
 opcion= menu();

@@ -2,7 +2,7 @@
 #include "Menu.h"
 #include "Juego.h"
 using namespace std;
-
+///funcion para mostrarle al usuario el menu por pantalla y pedirle una opcion
 int  menu(){
     int opcion;
     cout<< "GREED";
@@ -15,31 +15,37 @@ int  menu(){
     cout<< "0 - SALIR"<<endl;
     cout<<endl<< "ingrese alguna opcion: ";
  cin>>opcion;
-
+///vuelve a donde fue llamada la funcion y se lleva el valor de la variable opcion
  return opcion;
 }
-
+///funcion para ejecutar el menu
 void EjecutarMenu(int opcionElegida){
 switch(opcionElegida){
 case 1:
+    ///ingresa en caso de que el usuario haya ingresado 1
     JugarContraCPU();
     break;
 case 2:
+     ///ingresa en caso de que el usuario haya ingresado 2
     cout<< "juego de dos jugadores"<<endl;
     break;
 
 case 3:
+     ///ingresa en caso de que el usuario haya ingresado 3
     cout<< "estadisticas"<<endl;
     break;
 
 case 4:
+     ///ingresa en caso de que el usuario haya ingresado 4
     cout<< "creditos"<<endl;
     break;
 
 case 0:
+     ///ingresa en caso de que el usuario haya ingresado 5
     cout<< "Gracias por jugar a nuestro juego :)"<<endl;
     break;
 default:
+     ///ingresa en caso de que el usuario haya ingresado un numero diferente entre el 1 al 4
     cout<< "Numero invalido"<<endl;
 
 }
