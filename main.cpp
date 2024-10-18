@@ -2,7 +2,7 @@
 #include <ctime>
 #include "Menu.h"
 #include "Juego.h"
-#include <ctime>
+#include <ctime>//TESTEO FUNCIONAMIENTO
 int main(){
 srand(time(0));
 int opcion;
