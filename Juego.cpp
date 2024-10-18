@@ -5,6 +5,7 @@ using namespace std;
 
 /// Hola grupo :)
 /// hago un cambio
+/// hola, como va?
 
 ///funcion que tira un dado
 int TirarDado(){
