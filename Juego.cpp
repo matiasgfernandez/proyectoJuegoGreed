@@ -6,7 +6,7 @@ using namespace std;
 /// Hola grupo :)
 /// hago un cambio
 /// hola, como va?
-
+/// hola, esto es una prueba
 ///funcion que tira un dado
 int TirarDado(){
 return rand() % 6+1;
