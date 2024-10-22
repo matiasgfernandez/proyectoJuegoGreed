@@ -188,3 +188,24 @@ int puntajesRondas(int &PuntosJugadorRonda, int ContenidoDados[])
         // consulta y lanza los dados si el jugador lo desea
         ejecutarConsultaLanzamiento(eleccionJugador, daditos, cantidadDeDados, DadosBloqueadoresJugador1);
     }
+
+    ///10. Muestra la Ronda Actual del Jugador (prototipo)
+
+void mostrarRondaActual(int ronda, string nombreJugador,int puntajeRonda ){
+cout<<"Ronda N£mero: "<<ronda<<" Jugador: "<<nombreJugador<<endl;
+cout<<"Puntaje de la Ronda: "<<puntajeRonda<<endl;
+
+}
+
+///11. Ejecuta la ronda actual con todos los elementos de la funcion Jugar contra cpu.(Prototipo)
+
+void ejecutarRondaActual(int dados[],int cantidad){
+
+for(int i=0;i<3;i++){
+    JugarContraCPU();
+    //Aqui iria la funcion calculo de puntaje ronda.
+    mostrarRondaActual(i+1,nombreJugador,puntajeRonda);
+}
+}
+
+
