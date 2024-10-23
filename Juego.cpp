@@ -27,7 +27,7 @@ int TirarDado()
     return rand() % 6 + 1;
 }
 
-/// 4.funcion que tira los dados bloqueadores (la variable esta pasada por referencia)
+/// 4.funcion que tira los dados bloqueadores
 void TirarDadosBloqueadores(int (DadosBloqueadoresJugador1)[], int (DadosBloqueadoresJugador2)[])
 {
     for(int i = 0; i < 2; i++)
@@ -97,14 +97,12 @@ int DadosQueCoincidenConDadosBloqueadores(int dados[], int cantidad, int DadosBl
                     cout<< "El dado#" << j + 1 << " coincide con el dado bloqueador #" << i + 1 << endl;
                     CoincideConDadoBloqueador++;
                 }
-                else
-                {
-                 //   puntajesRondas(int &PuntosJugador, dados[can])
 
-                }
             }
         }
+
     }
+
     else
     {
         for(int i = 0; i < cantidad; i++)
@@ -115,76 +113,107 @@ int DadosQueCoincidenConDadosBloqueadores(int dados[], int cantidad, int DadosBl
                 CoincideConDadoBloqueador++;
             }
         }
+
+
+        cantidad -= CoincideConDadoBloqueador;
     }
-    cantidad -= CoincideConDadoBloqueador;
     return cantidad;
 }
-/*
-int puntajesRondas(int &PuntosJugadorRonda, int ContenidoDados[])
+
+int puntajesRondas(int DadosBloqueadores[],int dados[],int cantidad)
 {
-    int PuntosJugadorRonda=0;
-    PuntosJugadorRonda=PuntosJugadorRonda + ContenidoDados;
+    int  PuntosJugadorRonda=0;
+    bool  duplicar;
+    bool DadoIgualBloqueador=false;
 
-    return PuntosJugadorRonda;
-*/
-//10. funcion para saber si todos los dados son iguales
-    bool DadosIguales(int dados[],int Cantidad)
+    if(cantidad>0)
     {
-        bool TodoDadosIguales=false;
-        bool PrimerDado=true;
-        int numeroanterior;
-        bool DadosDiferentes=false;
-
-        if(Cantidad>=2)
+        for(int i=0; i<cantidad; i++)
         {
-            for(int i=0; i<Cantidad; i++)
+            if(dados[i]!=DadosBloqueadores[0] && dados[i]!=DadosBloqueadores[1])
             {
-                if(PrimerDado==true)
+                PuntosJugadorRonda+=dados[i];
+            }
+            else
+            {
+                DadoIgualBloqueador=true;
+            }
+        }
+        if(DadoIgualBloqueador==false)
+        {
+            duplicar=DadosIguales(dados,cantidad);
+            if(duplicar==true)
+            {
+                PuntosJugadorRonda*=2;
+            }
+        }
+    }
+    return PuntosJugadorRonda;
+}
+
+//10. funcion para saber si todos los dados son iguales
+bool DadosIguales(int dados[],int Cantidad)
+{
+    bool TodoDadosIguales=false;
+    bool PrimerDado=true;
+    int numeroanterior;
+    bool DadosDiferentes=false;
+
+    if(Cantidad>=2)
+    {
+        for(int i=0; i<Cantidad; i++)
+        {
+            if(PrimerDado==true)
+            {
+                numeroanterior=dados[i];
+                PrimerDado=false;
+            }
+            else
+            {
+                if(numeroanterior==dados[i])
                 {
                     numeroanterior=dados[i];
-                                   PrimerDado=false;
                 }
                 else
                 {
-                    if(numeroanterior==dados[i])
-                    {
-                        numeroanterior=dados[i];
-                    }
-                    else
-                    {
-                        DadosDiferentes=true;
-                    }
+                    DadosDiferentes=true;
                 }
             }
         }
-      if(DadosDiferentes=false){
-        TodoDadosIguales=true;
-      }
-     return TodoDadosIguales;
     }
-
+    if(DadosDiferentes==false)
+    {
+        TodoDadosIguales=true;
+    }
+    return TodoDadosIguales;
+}
+void MostrarPuntos(int PuntosObtenidos){
+cout<<endl<< "usted ha obtenido "<<PuntosObtenidos<<"  puntos en esta tirada"<<endl;
+}
 
 /// 9.funcion jugar, es la que se le pasa al menu para que pueda correr el juego
-    void JugarContraCPU()
-    {
-        bool eleccionJugador;
-        int DadosBloqueadoresJugador1[2] {};
-        int DadosBloqueadoresJugador2[2] {};
-        int cantidadDeDados = 5;
-        int daditos[cantidadDeDados];
-        int PuntosJugador=0;
-        string nombreJugador;
+void JugarContraCPU()
+{
+    bool eleccionJugador;
+    int DadosBloqueadoresJugador1[2] {};
+    int DadosBloqueadoresJugador2[2] {};
+    int cantidadDeDados = 5;
+    int daditos[cantidadDeDados];
+    int PuntosJugador=0;
+    string nombreJugador;
 
-        // pide el nombre del jugador
-        nombreJugador = PedirNombreJugador();
-        // borra pantalla
-        system("cls");
-        // muestra el nombre del jugador
-        MostrarNombreJugador1(nombreJugador);
-        // Tira los dados bloqueadores de los dos jugadores y lo guarda en las variables
-        TirarDadosBloqueadores(DadosBloqueadoresJugador1, DadosBloqueadoresJugador2);
-        // muestra los dados bloqueadores
-        MostrarDadosBloqueadores(DadosBloqueadoresJugador1);
-        // consulta y lanza los dados si el jugador lo desea
-        ejecutarConsultaLanzamiento(eleccionJugador, daditos, cantidadDeDados, DadosBloqueadoresJugador1);
-    }
+    // pide el nombre del jugador
+    nombreJugador = PedirNombreJugador();
+    // borra pantalla
+    system("cls");
+    // muestra el nombre del jugador
+    MostrarNombreJugador1(nombreJugador);
+    // Tira los dados bloqueadores de los dos jugadores y lo guarda en las variables
+    TirarDadosBloqueadores(DadosBloqueadoresJugador1, DadosBloqueadoresJugador2);
+    // muestra los dados bloqueadores
+    MostrarDadosBloqueadores(DadosBloqueadoresJugador1);
+    // consulta y lanza los dados si el jugador lo desea
+    ejecutarConsultaLanzamiento(eleccionJugador, daditos, cantidadDeDados, DadosBloqueadoresJugador1);
+    PuntosJugador=puntajesRondas(DadosBloqueadoresJugador1, daditos,cantidadDeDados);
+    MostrarPuntos(PuntosJugador);
+}
