@@ -11,3 +11,5 @@ int DadosQueCoincidenConDadosBloqueadores(int dados[],int cantidad, int DadosBlo
 bool DadosIguales(int dados[],int Cantidad);
 int puntajesRondas(int DadosBloqueadores[],int dados[],int cantidad);
 void MostrarPuntos(int puntosObtenidos);
+void mostrarRondaActual(int ronda, std::string nombreJugador,int puntajeRonda);
+void ejecutarRondaActual(int dados[],int cantidad);
