@@ -84,6 +84,7 @@ int TiradaDeLosDados(int Dados[], int Cantidad, int DadosBloqueadoresJugador1[])
 int DadosQueCoincidenConDadosBloqueadores(int dados[], int cantidad, int DadosBloqueadoresJugador1[])
 {
     int CoincideConDadoBloqueador = 0; // contador
+    if(DadosBloqueadoresJugador1[0]!=DadosBloqueadoresJugador1[1]){
     for (int i = 0; i < 2; i++)
     {
         for (int j = 0; j < cantidad; j++)
@@ -94,6 +95,17 @@ int DadosQueCoincidenConDadosBloqueadores(int dados[], int cantidad, int DadosBl
                 CoincideConDadoBloqueador++;
             }
         }
+    }
+    }else{
+    for (int i = 0; i < cantidad; i++){
+        {
+            if (dados[i] == DadosBloqueadoresJugador1[0])
+            {
+                cout << "El dado#" << i + 1 << " coincide con los dados bloqueadores #" << i + 1 << endl;
+                CoincideConDadoBloqueador++;
+            }
+        }
+    }
     }
     cantidad -= CoincideConDadoBloqueador;
     return cantidad;
