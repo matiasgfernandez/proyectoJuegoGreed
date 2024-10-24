@@ -3,14 +3,12 @@
 #include "Juego.h"
 using namespace std;
 
-///1.pide nombre del jugador
+/// 1. pide nombre del jugador
 string PedirNombreJugador()
 {
-    /// 1.1 ignora el enter anterior
     (cin.ignore());
     string nombre;
-    cout<< "Ingrese su nombre: ";
-    /// 1.2 Guarda en el cin hasta que haya un enter
+    cout << "Ingrese su nombre: ";
     getline(cin, nombre);
     return nombre;
 }
@@ -18,236 +16,245 @@ string PedirNombreJugador()
 /// 2. muestra el nombre del jugador
 void MostrarNombreJugador1(string nombre)
 {
-    cout<< "Turno del jugador: "<<nombre<<endl;
+    cout << "Turno del jugador: " << nombre << endl;
 }
 
-/// 3.funcion que tira un dado
+/// 3. funcion que tira un dado
 int TirarDado()
 {
     return rand() % 6 + 1;
 }
 
-/// 4.funcion que tira los dados bloqueadores
+/// 4. funcion que tira los dados bloqueadores
 void TirarDadosBloqueadores(int (DadosBloqueadoresJugador1)[], int (DadosBloqueadoresJugador2)[])
 {
-    for(int i = 0; i < 2; i++)
+    for (int i = 0; i < 2; i++)
     {
-        DadosBloqueadoresJugador1[i]= TirarDado();
-        DadosBloqueadoresJugador2[i]= TirarDado();
+        DadosBloqueadoresJugador1[i] = TirarDado();
+        DadosBloqueadoresJugador2[i] = TirarDado();
     }
 }
 
-/// 5.funcion que muestra los dados bloqueadores
+/// 5. funcion que muestra los dados bloqueadores
 void MostrarDadosBloqueadores(int DadosBloqueador[])
 {
     cout << endl;
     cout << "                      _______" << endl;
-    cout << "                     |"<<"   |"<< "   |" <<endl;
+    cout << "                     |" << "   |" << "   |" << endl;
     cout << "  Dados bloqueadores:| " << DadosBloqueador[0] << " | " << DadosBloqueador[1] << " |" << endl;
     cout << "                     |___|___|" << endl;
-    cout<<endl;
+    cout << endl;
 }
 
-
-/// 6.funcion que consulta al jugador y ejecuta el lanzamiento si la respuesta es afirmativa( eleccionJugador lo deje por referencia para las demas rondas)
+/// 6. funcion que consulta al jugador y ejecuta el lanzamiento si la respuesta es afirmativa (eleccionJugador lo deje por referencia para las demas rondas)
 void ejecutarConsultaLanzamiento(bool &eleccionJugador, int dados[], int cantidad, int DadosBloqueadoresJugador1[])
 {
     cout << "¨Desea realizar un lanzamiento? Ingrese 1 o 0. Si=1 y No=0 " << endl;
     cin >> eleccionJugador;
     if (eleccionJugador)
     {
-        cout<<"Lanzando Dados..."<<endl<<endl;
+        cout << "Lanzando Dados..." << endl << endl;
         TiradaDeLosDados(dados, cantidad, DadosBloqueadoresJugador1);
     }
     else
     {
-        cout << "Pasando a la siguiente ronda..." << endl;//Queda asi mientras dise¤amos la funci¢n de rondas.
-
+        cout << "Pasando a la siguiente ronda..." << endl; // Queda asi mientras dise¤amos la funci¢n de rondas.
     }
 }
 
-
-/// 7.funcion para tirar los dados, en caso de querer quitar dados habria que restarle la cantidad a la variable "cantidad"
+/// 7. funcion para tirar los dados, en caso de querer quitar dados habria que restarle la cantidad a la variable "cantidad"
 int TiradaDeLosDados(int Dados[], int Cantidad, int DadosBloqueadoresJugador1[])
 {
-    for(int i = 0; i < Cantidad; i++)
+    for (int i = 0; i < Cantidad; i++)
     {
         Dados[i] = TirarDado();
     }
-    for(int j = 0; j < Cantidad; j++)
+    for (int j = 0; j < Cantidad; j++)
     {
-        cout<< "Dado #" << j + 1 << ":" << Dados[j] << endl;
+        cout << "Dado #" << j + 1 << ":" << Dados[j] << endl;
     }
-    Cantidad = DadosQueCoincidenConDadosBloqueadores(Dados, Cantidad, DadosBloqueadoresJugador1);
-    return Cantidad;
+    int dadosRestantes = DadosQueCoincidenConDadosBloqueadores(Dados, Cantidad, DadosBloqueadoresJugador1);
+    return dadosRestantes;
 }
 
-/// 8.funcion para saber que dado coincide con un dado bloqueador
+
+
+
+/// 8. funcion para saber que dado coincide con un dado bloqueador
 int DadosQueCoincidenConDadosBloqueadores(int dados[], int cantidad, int DadosBloqueadoresJugador1[])
 {
     int CoincideConDadoBloqueador = 0; // contador
-    if(DadosBloqueadoresJugador1[0] != DadosBloqueadoresJugador1[1])
+    for (int i = 0; i < 2; i++)
     {
-        for(int i = 0; i < 2; i++)
+        for (int j = 0; j < cantidad; j++)
         {
-            for(int j = 0; j < cantidad; j++)
+            if (dados[j] == DadosBloqueadoresJugador1[i])
             {
-                if(dados[j] == DadosBloqueadoresJugador1[i])
-                {
-                    cout<< "El dado#" << j + 1 << " coincide con el dado bloqueador #" << i + 1 << endl;
-                    CoincideConDadoBloqueador++;
-                }
-
-            }
-        }
-
-    }
-
-    else
-    {
-        for(int i = 0; i < cantidad; i++)
-        {
-            if(dados[i] == DadosBloqueadoresJugador1[0])
-            {
-                cout<< "El dado#" << i + 1 << " coincide con los dados bloqueadores" << endl;
+                cout << "El dado#" << j + 1 << " coincide con el dado bloqueador #" << i + 1 << endl;
                 CoincideConDadoBloqueador++;
             }
         }
-
-
-        cantidad -= CoincideConDadoBloqueador;
     }
+    cantidad -= CoincideConDadoBloqueador;
     return cantidad;
 }
 
-int puntajesRondas(int DadosBloqueadores[],int dados[],int cantidad)
-{
-    int  PuntosJugadorRonda=0;
-    bool  duplicar;
-    bool DadoIgualBloqueador=false;
 
-    if(cantidad>0)
+/// 9. funcion para calcular los puntajes de la ronda
+
+int puntajesRondas(int DadosBloqueadores[], int dados[], int cantidad)
+{
+    int PuntosJugadorTirada = 0;
+    for (int i = 0; i < cantidad; i++)
     {
-        for(int i=0; i<cantidad; i++)
+        if (dados[i] != DadosBloqueadores[0] && dados[i] != DadosBloqueadores[1])
         {
-            if(dados[i]!=DadosBloqueadores[0] && dados[i]!=DadosBloqueadores[1])
-            {
-                PuntosJugadorRonda+=dados[i];
-            }
-            else
-            {
-                DadoIgualBloqueador=true;
-            }
-        }
-        if(DadoIgualBloqueador==false)
-        {
-            duplicar=DadosIguales(dados,cantidad);
-            if(duplicar==true)
-            {
-                PuntosJugadorRonda*=2;
-            }
+            PuntosJugadorTirada += dados[i];
         }
     }
-    return PuntosJugadorRonda;
+    return PuntosJugadorTirada;
 }
 
-//10. funcion para saber si todos los dados son iguales
-bool DadosIguales(int dados[],int Cantidad)
-{
-    bool TodoDadosIguales=false;
-    bool PrimerDado=true;
-    int numeroanterior;
-    bool DadosDiferentes=false;
 
-    if(Cantidad>=2)
+
+/// 10. funcion para saber si todos los dados son iguales
+bool DadosIguales(int dados[], int Cantidad)
+{
+    bool TodoDadosIguales = false;
+    bool PrimerDado = true;
+    int numeroanterior;
+    bool DadosDiferentes = false;
+    if (Cantidad >= 2)
     {
-        for(int i=0; i<Cantidad; i++)
+        for (int i = 0; i < Cantidad; i++)
         {
-            if(PrimerDado==true)
+            if (PrimerDado == true)
             {
-                numeroanterior=dados[i];
-                PrimerDado=false;
+                numeroanterior = dados[i];
+                PrimerDado = false;
             }
             else
             {
-                if(numeroanterior==dados[i])
+                if (numeroanterior == dados[i])
                 {
-                    numeroanterior=dados[i];
+                    numeroanterior = dados[i];
                 }
                 else
                 {
-                    DadosDiferentes=true;
+                    DadosDiferentes = true;
                 }
             }
         }
     }
-    if(DadosDiferentes==false)
+    if (DadosDiferentes == false)
     {
-        TodoDadosIguales=true;
+        TodoDadosIguales = true;
     }
     return TodoDadosIguales;
 }
-void MostrarPuntos(int PuntosObtenidos){
-cout<<endl<< "usted ha obtenido "<<PuntosObtenidos<<"  puntos en esta tirada"<<endl;
+
+/// 11. funcion para mostrar los puntos obtenidos en una tirada
+void MostrarPuntos(int PuntosObtenidos)
+{
+    cout << endl << "usted ha obtenido " << PuntosObtenidos << " puntos en esta tirada" << endl;
 }
 
-/// 9.funcion jugar, es la que se le pasa al menu para que pueda correr el juego
-void JugarContraCPU()
+/// 12. funcion jugar, es la que se le pasa al menu para que pueda correr el juego
+bool JugarContraCPU(int dados[], int &cantidad, int &puntajeRonda, bool &eleccionJugador, int DadosBloqueadoresJugador1[], string nombreJugador)
 {
-    bool eleccionJugador;
-    int DadosBloqueadoresJugador1[2] {};
     int DadosBloqueadoresJugador2[2] {};
-    int cantidadDeDados = 5;
-    int daditos[cantidadDeDados];
-    int PuntosJugador=0;
-    string nombreJugador;
-
-    // pide el nombre del jugador
-    nombreJugador = PedirNombreJugador();
-    // borra pantalla
-    system("cls");
     // muestra el nombre del jugador
     MostrarNombreJugador1(nombreJugador);
     // Tira los dados bloqueadores de los dos jugadores y lo guarda en las variables
     TirarDadosBloqueadores(DadosBloqueadoresJugador1, DadosBloqueadoresJugador2);
     // muestra los dados bloqueadores
     MostrarDadosBloqueadores(DadosBloqueadoresJugador1);
-    // consulta y lanza los dados si el jugador lo desea
-    ejecutarConsultaLanzamiento(eleccionJugador, daditos, cantidadDeDados, DadosBloqueadoresJugador1);
-    PuntosJugador=puntajesRondas(DadosBloqueadoresJugador1, daditos,cantidadDeDados);
-    MostrarPuntos(PuntosJugador);
-}
-/*
-        // pide el nombre del jugador
-        nombreJugador = PedirNombreJugador();
-        // borra pantalla
-        system("cls");
-        // muestra el nombre del jugador
-        MostrarNombreJugador1(nombreJugador);
-        // Tira los dados bloqueadores de los dos jugadores y lo guarda en las variables
-        TirarDadosBloqueadores(DadosBloqueadoresJugador1, DadosBloqueadoresJugador2);
-        // muestra los dados bloqueadores
-        MostrarDadosBloqueadores(DadosBloqueadoresJugador1);
-        // consulta y lanza los dados si el jugador lo desea
-        ejecutarConsultaLanzamiento(eleccionJugador, daditos, cantidadDeDados, DadosBloqueadoresJugador1);
+
+    while (true)
+    {
+        // consulta si el jugador desea lanzar los dados
+        cout << "¨Desea realizar un lanzamiento? Ingrese 1 o 0. Si=1 y No=0 " << endl;
+        cin >> eleccionJugador;
+        if (!eleccionJugador)
+        {
+            return false; // Si el jugador no quiere lanzar, terminar la ronda
+        }
+
+        // Lanzar dados y calcular el puntaje de la tirada
+        int dadosRestantes = TiradaDeLosDados(dados, cantidad, DadosBloqueadoresJugador1);
+        int puntajeTirada = puntajesRondas(DadosBloqueadoresJugador1, dados, dadosRestantes);
+
+        // Mostrar los puntos obtenidos en la tirada
+        cout << "Puntaje de la Tirada: " << puntajeTirada << endl;
+
+        // Sumamos los puntos de la tirada a los puntos de la ronda
+        puntajeRonda += puntajeTirada;
+
+        // Mostrar los puntos acumulados en la ronda
+        cout << "Puntaje acumulado de la Ronda: " << puntajeRonda << endl;
+
+        // Actualizar cantidad de dados restantes para el pr¢ximo lanzamiento
+        cantidad = dadosRestantes;
+
+        // Mostrar los dados restantes
+        cout << "Dados restantes: " << cantidad << endl;
+
+        if (cantidad <= 0)
+        {
+            break; // Si no hay dados restantes, terminar la ronda
+        }
     }
-*/
-    ///10. Muestra la Ronda Actual del Jugador (prototipo)
 
-void mostrarRondaActual(int ronda, string nombreJugador,int puntajeRonda ){
-cout<<"Ronda N£mero: "<<ronda<<" Jugador: "<<nombreJugador<<endl;
-cout<<"Puntaje de la Ronda: "<<puntajeRonda<<endl;
-
+    return true;
 }
 
-///11. Ejecuta la ronda actual con todos los elementos de la funcion Jugar contra cpu.(Prototipo)
 
-void ejecutarRondaActual(int dados[],int cantidad){
 
-for(int i=0;i<3;i++){
-    JugarContraCPU();
-    //Aqui iria la funcion calculo de puntaje ronda.
-  //  mostrarRondaActual(i+1,nombreJugador,puntajeRonda);
+/// 13. muestra la ronda actual del jugador
+void mostrarRondaActual(int ronda, string nombreJugador, int puntajeRonda)
+{
+    cout << "Ronda N£mero: " << ronda << " - Jugador: " << nombreJugador << endl;
+    cout << "Puntaje acumulado de la Ronda: " << puntajeRonda << endl;
+    MostrarPuntos(puntajeRonda);
 }
-}
 
+
+// 14. ejecuta la ronda actual con todos los elementos de la funcion jugar contra cpu
+void ejecutarRondaActual(int dados[], int cantidad, string nombreJugador)
+{
+    int puntajeTotal = 0;
+    bool eleccionJugador = true;
+
+    for (int i = 0; i < 3; i++)
+    {
+        cout << "Ronda " << i + 1 << endl; // Mostrar solo la ronda
+        cout << "Turno del jugador: " << nombreJugador << endl; // Mostrar el nombre del jugador en la siguiente l¡nea
+
+        int puntajeRonda = 0;
+        int dadosRestantes = cantidad;
+        int DadosBloqueadoresJugador1[2] {};
+
+        while (true)
+        {
+            if (!JugarContraCPU(dados, dadosRestantes, puntajeRonda, eleccionJugador, DadosBloqueadoresJugador1, nombreJugador))
+            {
+                break; // Si el jugador no quiere lanzar, terminar la ronda
+            }
+
+            // Mostrar el puntaje acumulado de la ronda despu‚s de cada tirada
+            mostrarRondaActual(i + 1, nombreJugador, puntajeRonda);
+
+            // Verificar si quedan dados para lanzar
+            if (dadosRestantes <= 0)
+            {
+                break;
+            }
+        }
+
+        // Sumar los puntos de la ronda al puntaje total
+        puntajeTotal += puntajeRonda;
+
+        // Mostrar el puntaje total acumulado al final de la ronda
+        cout << "Puntaje total acumulado: " << puntajeTotal << endl;
+    }
+}
