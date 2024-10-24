@@ -101,7 +101,7 @@ int DadosQueCoincidenConDadosBloqueadores(int dados[], int cantidad, int DadosBl
         {
             if (dados[i] == DadosBloqueadoresJugador1[0])
             {
-                cout << "El dado#" << i + 1 << " coincide con los dados bloqueadores #" << i + 1 << endl;
+                cout << "El dado#" << i + 1 << " coincide con los dados bloqueadores" << endl;
                 CoincideConDadoBloqueador++;
             }
         }
@@ -114,17 +114,35 @@ int DadosQueCoincidenConDadosBloqueadores(int dados[], int cantidad, int DadosBl
 
 /// 9. funcion para calcular los puntajes de la ronda
 
-int puntajesRondas(int DadosBloqueadores[], int dados[], int cantidad)
+int puntajesRondas(int DadosBloqueadores[],int dados[],int cantidad)
 {
-    int PuntosJugadorTirada = 0;
-    for (int i = 0; i < cantidad; i++)
+    int  PuntosJugadorRonda=0;
+    bool  duplicar;
+    bool DadoIgualBloqueador=false;
+
+    if(cantidad>0)
     {
-        if (dados[i] != DadosBloqueadores[0] && dados[i] != DadosBloqueadores[1])
+        for(int i=0; i<cantidad; i++)
         {
-            PuntosJugadorTirada += dados[i];
+            if(dados[i]!=DadosBloqueadores[0] && dados[i]!=DadosBloqueadores[1])
+            {
+                PuntosJugadorRonda+=dados[i];
+            }
+            else
+            {
+                DadoIgualBloqueador=true;
+            }
+        }
+        if(DadoIgualBloqueador==false && cantidad>=2)
+        {
+            duplicar=DadosIguales(dados,cantidad);
+            if(duplicar==true)
+            {
+                PuntosJugadorRonda*=2;
+            }
         }
     }
-    return PuntosJugadorTirada;
+    return PuntosJugadorRonda;
 }
 
 
@@ -199,19 +217,25 @@ bool JugarContraCPU(int dados[], int &cantidad, int &puntajeRonda, bool &eleccio
         // Mostrar los puntos obtenidos en la tirada
         cout << "Puntaje de la Tirada: " << puntajeTirada << endl;
 
-        // Sumamos los puntos de la tirada a los puntos de la ronda
+        // Sumamos los puntos de la tirada a los puntos de la ronda//si la cantidad de dados es igual a 0 los puntos de la ronda sera 0
+        if(dadosRestantes==0){
+            puntajeRonda=0;
+        }else{
         puntajeRonda += puntajeTirada;
-
+        }
         // Mostrar los puntos acumulados en la ronda
         cout << "Puntaje acumulado de la Ronda: " << puntajeRonda << endl;
-
+        system("pause");
+        system("cls");
+MostrarDadosBloqueadores(DadosBloqueadoresJugador1);
+cout<<endl <<"puntaje total en la ronda: "<<puntajeRonda<<endl;
         // Actualizar cantidad de dados restantes para el pr¢ximo lanzamiento
         cantidad = dadosRestantes;
 
         // Mostrar los dados restantes
         cout << "Dados restantes: " << cantidad << endl;
 
-        if (cantidad <= 0)
+        if (cantidad == 0)
         {
             break; // Si no hay dados restantes, terminar la ronda
         }
@@ -225,7 +249,7 @@ bool JugarContraCPU(int dados[], int &cantidad, int &puntajeRonda, bool &eleccio
 /// 13. muestra la ronda actual del jugador
 void mostrarRondaActual(int ronda, string nombreJugador, int puntajeRonda)
 {
-    cout << "Ronda N£mero: " << ronda << " - Jugador: " << nombreJugador << endl;
+    cout << "Ronda Numero: " << ronda << " | Jugador: " << nombreJugador << endl;
     cout << "Puntaje acumulado de la Ronda: " << puntajeRonda << endl;
     MostrarPuntos(puntajeRonda);
 }
@@ -239,8 +263,9 @@ void ejecutarRondaActual(int dados[], int cantidad, string nombreJugador)
 
     for (int i = 0; i < 3; i++)
     {
+        system("cls");
         cout << "Ronda " << i + 1 << endl; // Mostrar solo la ronda
-        cout << "Turno del jugador: " << nombreJugador << endl; // Mostrar el nombre del jugador en la siguiente l¡nea
+        //cout << "Turno del jugador: " << nombreJugador << endl; // Mostrar el nombre del jugador en la siguiente l¡nea
 
         int puntajeRonda = 0;
         int dadosRestantes = cantidad;
@@ -248,6 +273,7 @@ void ejecutarRondaActual(int dados[], int cantidad, string nombreJugador)
 
         while (true)
         {
+
             if (!JugarContraCPU(dados, dadosRestantes, puntajeRonda, eleccionJugador, DadosBloqueadoresJugador1, nombreJugador))
             {
                 break; // Si el jugador no quiere lanzar, terminar la ronda
@@ -268,5 +294,7 @@ void ejecutarRondaActual(int dados[], int cantidad, string nombreJugador)
 
         // Mostrar el puntaje total acumulado al final de la ronda
         cout << "Puntaje total acumulado: " << puntajeTotal << endl;
+
     }
+    system("pause");
 }

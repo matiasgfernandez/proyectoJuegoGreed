@@ -21,8 +21,9 @@ int menu() {
 void EjecutarMenu(int opcionElegida) {
     switch(opcionElegida) {
         case 1: {
-            int dados[5];
-            int cantidad = 5;
+             int cantidad = 5;
+            int dados[cantidad];
+
             string nombreJugador = PedirNombreJugador();
 
             ejecutarRondaActual(dados, cantidad, nombreJugador);
