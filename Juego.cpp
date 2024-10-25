@@ -133,7 +133,7 @@ int DadosQueCoincidenConDadosBloqueadores(int dados[], int cantidad, int DadosBl
 
 /// 9. funcion para calcular los puntajes de la ronda
 
-int puntajesRondas(int DadosBloqueadores[],int dados[],int cantidad)
+int puntajesRondas(int DadosBloqueadores[],int dados[],int cantidad, bool &duplico)
 {
     int  PuntosJugadorRonda=0;
     bool  duplicar;
@@ -158,6 +158,7 @@ int puntajesRondas(int DadosBloqueadores[],int dados[],int cantidad)
             if(duplicar==true)
             {
                 PuntosJugadorRonda*=2;
+                duplico=true;
             }
         }
     }
@@ -207,7 +208,7 @@ void MostrarPuntos(int PuntosObtenidos)
 {
     cout << endl << "usted ha obtenido " << PuntosObtenidos << " puntos en esta tirada" << endl;
 }
-
+/*
 /// 12. funcion jugar, es la que se le pasa al menu para que pueda correr el juego
 bool JugarContraCPU(int dados[], int &cantidad, int &puntajeRonda, bool &eleccionJugador, int DadosBloqueadoresJugador1[], string nombreJugador)
 {
@@ -267,7 +268,7 @@ bool JugarContraCPU(int dados[], int &cantidad, int &puntajeRonda, bool &eleccio
 
     return true;
 }
-
+*/
 
 
 /// 13. muestra la ronda actual del jugador
@@ -282,7 +283,7 @@ void mostrarRondaActual(int ronda, string nombreJugador, int puntajeRonda[])
     //MostrarPuntos(puntajeRonda);
 }
 
-
+/*
 // 14. ejecuta la ronda actual con todos los elementos de la funcion jugar contra cpu
 void ejecutarRondaActual(int dados[], int cantidad, string nombreJugador)
 {
@@ -326,6 +327,7 @@ void ejecutarRondaActual(int dados[], int cantidad, string nombreJugador)
     }
     system("pause");
 }
+*/
 void PuntosDeRonda(int CantidadDados,int PuntosXtirada,int PuntosTotalesRonda[],int ronda)
 {
 
@@ -392,6 +394,7 @@ void JuegoUnJugador()
 ///ciclo que corre todas las tiradas, corta cuando la eleccion del jugador sea false o tambien corta cuando los dados restantes sean 0
         while(EleccionJugador==true && DadosRestantes!=0)
         {
+            bool duplico=false;
             ///muestra la ronda actual, el nombre del jugador y el puntaje de las 3 rondas
             mostrarRondaActual(i,nombreJugador,puntajeRonda);
          ///muestra los 2 dados bloqueadores
@@ -399,16 +402,21 @@ void JuegoUnJugador()
             ///simula la tirada de dados
             TiradaDeLosDados(dados,DadosRestantes,DadosBloqueadoresJugador1);
             ///suma los dados que no son iguales a un dado bloqueador
-            int puntajeTirada = puntajesRondas(DadosBloqueadoresJugador1, dados, DadosRestantes);
+            int puntajeTirada = puntajesRondas(DadosBloqueadoresJugador1, dados, DadosRestantes,duplico);
             ///resta la cantidad de dados que coincidieron con un dado bloqueador
             DadosRestantes = DadosQueCoincidenConDadosBloqueadores(dados, DadosRestantes, DadosBloqueadoresJugador1);
             ///muestra los puntos que hizo el jugador en la tirada
             MostrarPuntos(puntajeTirada);
             ///va sumando los puntos de la tirada en el vector de puntajeRonda
             PuntosDeRonda(DadosRestantes,puntajeTirada,puntajeRonda,i-1);
-
+if(duplico==false){
             ///preguna al jugador si quiere tirar una proxima tirada
             EleccionJugador=PreguntaPorProximaTirada(DadosRestantes);
+}else
+{
+    cout<<endl<< "Tirada de dados obligatoria"<<endl;
+    EleccionJugador=true;
+}
             ///pausa la pantalla
             system("pause");
             ///borra la pantalla

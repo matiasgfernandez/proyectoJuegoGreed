@@ -10,7 +10,7 @@ void MostrarDadosBloqueadores(int DadosBloqueador[]);
 void TiradaDeLosDados(int Dados[],int Cantidad,int DadosBloqueadoresJugador1[]);
 int DadosQueCoincidenConDadosBloqueadores(int dados[],int cantidad, int DadosBloqueadoresJugador1[]);
 bool DadosIguales(int dados[],int Cantidad);
-int puntajesRondas(int dados[],int cantidad);
+int puntajesRondas(int dados[],int cantidad, bool &duplico);
 void MostrarPuntos(int puntosObtenidos);
 void mostrarRondaActual(int ronda, std::string nombreJugador,int puntajeRonda[]);
 void ejecutarRondaActual(int dados[],int cantidad, std::string nombreJugador);
