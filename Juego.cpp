@@ -357,21 +357,28 @@ void MostrarPuntosTotales(int puntos)
     cout<<endl<< "sus puntos totales obtenidos son: "<<puntos<<endl;
 }
 ///-------------------------------------------------------------------------------------------------------ALTERNATIVA
+///funcion que la llama menu.cpp
 void JuegoUnJugador()
 {
-
+///declaracion y inicializacion de acumulador que guardara el resultado de la suma de las 3 rondas
     int puntosTotales=0;
+    ///declaracion y inicializacion de vector que va a guarda los puntos acumulados en las 3 rondas
     int puntajeRonda[3] {};
+    ///le pide el nombre al usuario y lo guarda en la variable nombreJugador
     string nombreJugador = PedirNombreJugador();
-
+///borra pantalla
     system("Cls");
 
 ///un for que recorre las tres rondas del juego
     for(int i=1; i<=3; i++)
     {
+        ///la cantidad de dados que tiene el jugador
         int DadosRestantes = 5;
+        ///guarda los valores de los dados
         int dados[DadosRestantes];
+        ///guarda los valores de los dados bloqueadores del jugador 1
         int DadosBloqueadoresJugador1[2] {};
+               ///guarda los valores de los dados bloqueadores del jugador 2
         int DadosBloqueadoresJugador2[2] {};
         ///muestra numero de ronda, nombre del jugador, puntaje total
         mostrarRondaActual(i,nombreJugador,puntajeRonda);
@@ -382,26 +389,35 @@ void JuegoUnJugador()
 ///pregunta al jugador si quiere tirar los dados y lo guarda en la variable eleccionJugador
         bool EleccionJugador=PreguntaPorProximaTirada(DadosRestantes);
         system("cls");
-///ciclo que corre todas las tiradas, corta
+///ciclo que corre todas las tiradas, corta cuando la eleccion del jugador sea false o tambien corta cuando los dados restantes sean 0
         while(EleccionJugador==true && DadosRestantes!=0)
         {
+            ///muestra la ronda actual, el nombre del jugador y el puntaje de las 3 rondas
             mostrarRondaActual(i,nombreJugador,puntajeRonda);
+         ///muestra los 2 dados bloqueadores
             MostrarDadosBloqueadores(DadosBloqueadoresJugador1);
             ///simula la tirada de dados
             TiradaDeLosDados(dados,DadosRestantes,DadosBloqueadoresJugador1);
-
+            ///suma los dados que no son iguales a un dado bloqueador
             int puntajeTirada = puntajesRondas(DadosBloqueadoresJugador1, dados, DadosRestantes);
+            ///resta la cantidad de dados que coincidieron con un dado bloqueador
             DadosRestantes = DadosQueCoincidenConDadosBloqueadores(dados, DadosRestantes, DadosBloqueadoresJugador1);
+            ///muestra los puntos que hizo el jugador en la tirada
             MostrarPuntos(puntajeTirada);
+            ///va sumando los puntos de la tirada en el vector de puntajeRonda
             PuntosDeRonda(DadosRestantes,puntajeTirada,puntajeRonda,i-1);
 
-
+            ///preguna al jugador si quiere tirar una proxima tirada
             EleccionJugador=PreguntaPorProximaTirada(DadosRestantes);
+            ///pausa la pantalla
             system("pause");
+            ///borra la pantalla
             system("cls");
         }
     }
+    ///suma los puntos de todas las rondas y lo pasa al acumulador puntosTotales
     puntosTotales=CalcularPuntosTotalesRondas(puntajeRonda);
+    ///muestra los puntosTotales
     MostrarPuntosTotales(puntosTotales);
 }
 
