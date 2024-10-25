@@ -45,7 +45,17 @@ void MostrarDadosBloqueadores(int DadosBloqueador[])
     cout << "                     |___|___|" << endl;
     cout << endl;
 }
-
+bool PreguntaPorProximaTirada(int DadosRestantes){
+bool EleccionJugador;
+if(DadosRestantes!=0){
+cout << "Le quedan "<<DadosRestantes<<" dados, desea realizar un lanzamiento? Ingrese 1 o 0. Si=1 y No=0 " << endl;
+    cin >> EleccionJugador;
+}else{
+cout<< "se ha quedado sin dados para tirar, ha perdido todos sus puntos"<<endl;
+EleccionJugador=false;
+}
+    return EleccionJugador;
+}
 /// 6. funcion que consulta al jugador y ejecuta el lanzamiento si la respuesta es afirmativa (eleccionJugador lo deje por referencia para las demas rondas)
 /*
 void ejecutarConsultaLanzamiento(bool &eleccionJugador, int dados[], int cantidad, int DadosBloqueadoresJugador1[])
@@ -66,6 +76,7 @@ void ejecutarConsultaLanzamiento(bool &eleccionJugador, int dados[], int cantida
 /// 7. funcion para tirar los dados, en caso de querer quitar dados habria que restarle la cantidad a la variable "cantidad"
 void TiradaDeLosDados(int Dados[], int Cantidad, int DadosBloqueadoresJugador1[])
 {
+    cout<<"Lanzando dados..."<<endl<<endl;
     for (int i = 0; i < Cantidad; i++)
     {
         Dados[i] = TirarDado();
@@ -249,10 +260,13 @@ cout<<endl <<"puntaje total en la ronda: "<<puntajeRonda<<endl;
 
 
 /// 13. muestra la ronda actual del jugador
-void mostrarRondaActual(int ronda, string nombreJugador, int puntajeRonda)
+void mostrarRondaActual(int ronda, string nombreJugador, int puntajeRonda[])
 {
-    cout << "Ronda Numero: " << ronda <<endl<< " Jugador: " << nombreJugador << endl;
-    cout << "Puntaje acumulado de la Ronda: " << puntajeRonda << endl;
+    cout << "Ronda Numero: " << ronda <<endl;
+    cout<< "Jugador: " << nombreJugador << endl;
+    for(int i=0;i<3;i++){
+    cout << "Puntaje acumulado de la Ronda#"<<i+1<<": " << puntajeRonda[i] << endl;
+    }
     //MostrarPuntos(puntajeRonda);
 }
 
@@ -282,7 +296,7 @@ void ejecutarRondaActual(int dados[], int cantidad, string nombreJugador)
             }
 
             // Mostrar el puntaje acumulado de la ronda despu‚s de cada tirada
-            mostrarRondaActual(i + 1, nombreJugador, puntajeRonda);
+//            mostrarRondaActual(i + 1, nombreJugador, puntajeRonda);
 
             // Verificar si quedan dados para lanzar
             if (dadosRestantes <= 0)
@@ -300,3 +314,73 @@ void ejecutarRondaActual(int dados[], int cantidad, string nombreJugador)
     }
     system("pause");
 }
+void PuntosDeRonda(int CantidadDados,int PuntosXtirada,int PuntosTotalesRonda[],int ronda){
+
+if(CantidadDados==0){
+ PuntosTotalesRonda[ronda]=0;
+        }else{
+        PuntosTotalesRonda[ronda]+= PuntosXtirada;
+        }
+
+    }
+
+int CalcularPuntosTotalesRondas(int puntosRondas[]){
+int TotalDePuntosPartida=0;
+
+ for(int i=0;i<3;i++){
+
+    TotalDePuntosPartida+=puntosRondas[i];
+ }
+return TotalDePuntosPartida;
+
+}
+void MostrarPuntosTotales(int puntos){
+cout<<endl<< "sus puntos totales obtenidos son: "<<puntos<<endl;
+}
+///-------------------------------------------------------------------------------------------------------ALTERNATIVA
+void JuegoUnJugador(){
+
+int puntosTotales=0;
+int puntajeRonda[3]{};
+string nombreJugador = PedirNombreJugador();
+
+system("Cls");
+
+///un for que recorre las tres rondas del juego
+for(int i=1;i<=3;i++){
+int DadosRestantes = 5;
+int dados[DadosRestantes];
+int DadosBloqueadoresJugador1[2] {};
+ int DadosBloqueadoresJugador2[2] {};
+    ///muestra numero de ronda, nombre del jugador, puntaje total
+    mostrarRondaActual(i,nombreJugador,puntajeRonda);
+    /// Tira los dados bloqueadores de los dos jugadores y lo guarda en las variables
+    TirarDadosBloqueadores(DadosBloqueadoresJugador1, DadosBloqueadoresJugador2);
+    /// muestra los dados bloqueadores
+    MostrarDadosBloqueadores(DadosBloqueadoresJugador1);
+ ///pregunta al jugador si quiere tirar los dados y lo guarda en la variable eleccionJugador
+bool EleccionJugador=PreguntaPorProximaTirada(DadosRestantes);
+system("cls");
+///ciclo que corre todas las tiradas, corta
+      while(EleccionJugador==true && DadosRestantes!=0){
+        mostrarRondaActual(i,nombreJugador,puntajeRonda);
+        MostrarDadosBloqueadores(DadosBloqueadoresJugador1);
+        ///simula la tirada de dados
+    TiradaDeLosDados(dados,DadosRestantes,DadosBloqueadoresJugador1);
+
+        int puntajeTirada = puntajesRondas(DadosBloqueadoresJugador1, dados, DadosRestantes);
+         DadosRestantes = DadosQueCoincidenConDadosBloqueadores(dados, DadosRestantes, DadosBloqueadoresJugador1);
+        MostrarPuntos(puntajeTirada);
+        PuntosDeRonda(DadosRestantes,puntajeTirada,puntajeRonda,i-1);
+
+
+    EleccionJugador=PreguntaPorProximaTirada(DadosRestantes);
+    system("pause");
+    system("cls");
+      }
+}
+puntosTotales=CalcularPuntosTotalesRondas(puntajeRonda);
+MostrarPuntosTotales(puntosTotales);
+}
+
+

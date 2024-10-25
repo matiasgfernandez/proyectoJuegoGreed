@@ -19,14 +19,14 @@
 
 1728778641 c:\programacion\juegogreed\proyectojuegogreed\juego.h
 
-1729819534 source:c:\git\proyectojuegogreed\juego.cpp
+1729836628 source:c:\git\proyectojuegogreed\juego.cpp
 	<iostream>
 	<ctime>
 	"Juego.h"
 
-1729822418 c:\git\proyectojuegogreed\juego.h
+1729839639 c:\git\proyectojuegogreed\juego.h
 
-1729820859 source:c:\git\proyectojuegogreed\menu.cpp
+1729829849 source:c:\git\proyectojuegogreed\menu.cpp
 	<iostream>
 	"Menu.h"
 	"Juego.h"

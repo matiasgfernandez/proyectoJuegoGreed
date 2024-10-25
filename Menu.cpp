@@ -20,15 +20,18 @@ int menu() {
 
 void EjecutarMenu(int opcionElegida) {
     switch(opcionElegida) {
-        case 1: {
+        case 1:
+            JuegoUnJugador();
+            /*
              int cantidad = 5;
             int dados[cantidad];
 
             string nombreJugador = PedirNombreJugador();
 
             ejecutarRondaActual(dados, cantidad, nombreJugador);
+            */
             break;
-        }
+
         case 2:
             cout << "juego de dos jugadores" << endl;
             break;
