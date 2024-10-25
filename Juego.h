@@ -5,7 +5,7 @@ void MostrarNombreJugador1(std::string nombre);
 int TirarDado();
 void TirarDadosBloqueadores(int (DadosBloqueadoresJugador1)[],int (DadosBloqueadoresJugador2)[]);
 void MostrarDadosBloqueadores(int DadosBloqueador[]);
-int TiradaDeLosDados(int Dados[],int Cantidad,int DadosBloqueadoresJugador1[]);
+void TiradaDeLosDados(int Dados[],int Cantidad,int DadosBloqueadoresJugador1[]);
 int DadosQueCoincidenConDadosBloqueadores(int dados[],int cantidad, int DadosBloqueadoresJugador1[]);
 bool DadosIguales(int dados[],int Cantidad);
 int puntajesRondas(int dados[],int cantidad);

@@ -47,6 +47,7 @@ void MostrarDadosBloqueadores(int DadosBloqueador[])
 }
 
 /// 6. funcion que consulta al jugador y ejecuta el lanzamiento si la respuesta es afirmativa (eleccionJugador lo deje por referencia para las demas rondas)
+/*
 void ejecutarConsultaLanzamiento(bool &eleccionJugador, int dados[], int cantidad, int DadosBloqueadoresJugador1[])
 {
     cout << "¨Desea realizar un lanzamiento? Ingrese 1 o 0. Si=1 y No=0 " << endl;
@@ -61,9 +62,9 @@ void ejecutarConsultaLanzamiento(bool &eleccionJugador, int dados[], int cantida
         cout << "Pasando a la siguiente ronda..." << endl; // Queda asi mientras dise¤amos la funci¢n de rondas.
     }
 }
-
+*/
 /// 7. funcion para tirar los dados, en caso de querer quitar dados habria que restarle la cantidad a la variable "cantidad"
-int TiradaDeLosDados(int Dados[], int Cantidad, int DadosBloqueadoresJugador1[])
+void TiradaDeLosDados(int Dados[], int Cantidad, int DadosBloqueadoresJugador1[])
 {
     for (int i = 0; i < Cantidad; i++)
     {
@@ -73,8 +74,7 @@ int TiradaDeLosDados(int Dados[], int Cantidad, int DadosBloqueadoresJugador1[])
     {
         cout << "Dado #" << j + 1 << ":" << Dados[j] << endl;
     }
-    int dadosRestantes = DadosQueCoincidenConDadosBloqueadores(Dados, Cantidad, DadosBloqueadoresJugador1);
-    return dadosRestantes;
+
 }
 
 
@@ -211,11 +211,13 @@ bool JugarContraCPU(int dados[], int &cantidad, int &puntajeRonda, bool &eleccio
         }
 
         // Lanzar dados y calcular el puntaje de la tirada
-        int dadosRestantes = TiradaDeLosDados(dados, cantidad, DadosBloqueadoresJugador1);
-        int puntajeTirada = puntajesRondas(DadosBloqueadoresJugador1, dados, dadosRestantes);
+        TiradaDeLosDados(dados,cantidad,DadosBloqueadoresJugador1);
+        int puntajeTirada = puntajesRondas(DadosBloqueadoresJugador1, dados, cantidad);
+        int dadosRestantes = DadosQueCoincidenConDadosBloqueadores(dados, cantidad, DadosBloqueadoresJugador1);
+
 
         // Mostrar los puntos obtenidos en la tirada
-        cout << "Puntaje de la Tirada: " << puntajeTirada << endl;
+        MostrarPuntos (puntajeTirada);
 
         // Sumamos los puntos de la tirada a los puntos de la ronda//si la cantidad de dados es igual a 0 los puntos de la ronda sera 0
         if(dadosRestantes==0){
@@ -249,9 +251,9 @@ cout<<endl <<"puntaje total en la ronda: "<<puntajeRonda<<endl;
 /// 13. muestra la ronda actual del jugador
 void mostrarRondaActual(int ronda, string nombreJugador, int puntajeRonda)
 {
-    cout << "Ronda Numero: " << ronda << " | Jugador: " << nombreJugador << endl;
+    cout << "Ronda Numero: " << ronda <<endl<< " Jugador: " << nombreJugador << endl;
     cout << "Puntaje acumulado de la Ronda: " << puntajeRonda << endl;
-    MostrarPuntos(puntajeRonda);
+    //MostrarPuntos(puntajeRonda);
 }
 
 
