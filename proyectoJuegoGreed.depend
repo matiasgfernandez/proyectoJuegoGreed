@@ -60,25 +60,23 @@
 	"Menu.h"
 	"Juego.h"
 
-1729270168 source:c:\users\crive\onedrive\escritorio\tup\segundo cuatrimestre\programacion 1\git\proyectojuegogreed\menu.cpp
+1729960193 source:c:\users\crive\onedrive\escritorio\tup\segundo cuatrimestre\programacion 1\git\proyectojuegogreed\menu.cpp
 	<iostream>
 	"Menu.h"
 	"Juego.h"
 
-1729268281 c:\users\crive\onedrive\escritorio\tup\segundo cuatrimestre\programacion 1\git\proyectojuegogreed\menu.h
+1729797075 c:\users\crive\onedrive\escritorio\tup\segundo cuatrimestre\programacion 1\git\proyectojuegogreed\menu.h
 
-1729727602 c:\users\crive\onedrive\escritorio\tup\segundo cuatrimestre\programacion 1\git\proyectojuegogreed\juego.h
-	<string>
+1729960081 c:\users\crive\onedrive\escritorio\tup\segundo cuatrimestre\programacion 1\git\proyectojuegogreed\juego.h
 
-1729727602 source:c:\users\crive\onedrive\escritorio\tup\segundo cuatrimestre\programacion 1\git\proyectojuegogreed\juego.cpp
+1729960081 source:c:\users\crive\onedrive\escritorio\tup\segundo cuatrimestre\programacion 1\git\proyectojuegogreed\juego.cpp
 	<iostream>
 	<ctime>
 	"Juego.h"
 
-1729271744 source:c:\users\crive\onedrive\escritorio\tup\segundo cuatrimestre\programacion 1\git\proyectojuegogreed\main.cpp
+1729797075 source:c:\users\crive\onedrive\escritorio\tup\segundo cuatrimestre\programacion 1\git\proyectojuegogreed\main.cpp
 	<iostream>
 	<ctime>
 	"Menu.h"
 	"Juego.h"
-	<ctime>
 

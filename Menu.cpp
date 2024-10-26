@@ -5,15 +5,15 @@ using namespace std;
 
 int menu() {
     int opcion;
-    cout << "GREED";
-    cout << endl << "__________________________" << endl;
-    cout << "1 - MODO UN JUGADOR" << endl;
-    cout << "2 - MODO DOS JUGADORES" << endl;
-    cout << "3 - ESTADISTICAS" << endl;
-    cout << "4 - CREDITOS" << endl;
-    cout << "__________________________" << endl;
-    cout << "0 - SALIR" << endl;
-    cout << endl << "ingrese alguna opcion: ";
+    cout << "|         GREED                |"<<endl;
+    cout << "|------------------------------|"<<endl;
+    cout << "|1 - MODO UN JUGADOR           |" << endl;
+    cout << "|2 - MODO DOS JUGADORES        |" << endl;
+    cout << "|3 - ESTADISTICAS              |" << endl;
+    cout << "|4 - CREDITOS                  |" << endl;
+    cout << "|0 - SALIR                     |" << endl;
+    cout << "|______________________________|" <<endl;
+    cout << endl << "ingrese alguna opci¢n: ";
     cin >> opcion;
     return opcion;
 }
