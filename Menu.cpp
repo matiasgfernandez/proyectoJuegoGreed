@@ -4,14 +4,23 @@
 using namespace std;
 
 int menu() {
+    system("cls");
     int opcion;
-    cout << "|         GREED                |"<<endl;
-    cout << "|------------------------------|"<<endl;
-    cout << "|1 - MODO UN JUGADOR           |" << endl;
-    cout << "|2 - MODO DOS JUGADORES        |" << endl;
-    cout << "|3 - ESTADISTICAS              |" << endl;
-    cout << "|4 - CREDITOS                  |" << endl;
-    cout << "|0 - SALIR                     |" << endl;
+    cout<<endl<< "        _______"<<endl;
+   cout<<   "       |       | "<<endl;
+    cout << "       | GREED |            "<<endl;
+    cout<< "       |_______|"<<endl;
+    cout << " ______________________________"<<endl;
+    cout<< "|                              |";
+    cout <<endl<< "|1 - MODO UN JUGADOR           |" << endl;
+    cout<< "|                              |";
+    cout <<endl<< "|2 - MODO DOS JUGADORES        |" << endl;
+    cout<< "|                              |";
+    cout <<endl<< "|3 - ESTADISTICAS              |" << endl;
+    cout<< "|                              |";
+    cout << endl<<"|4 - CREDITOS                  |" << endl;
+    cout<< "|                              |";
+    cout << endl<<"|0 - SALIR                     |" << endl;
     cout << "|______________________________|" <<endl;
     cout << endl << "ingrese alguna opci¢n: ";
     cin >> opcion;
@@ -20,8 +29,16 @@ int menu() {
 
 void EjecutarMenu(int opcionElegida) {
     switch(opcionElegida) {
+int confirmacion;
         case 1:
+            cout<< "Esta seguro que desea entrar al modo UN JUGADOR?      ingrese 1 o 0 - | 1 = si | 2 = no|"<<endl;
+            cout<<endl<< "ingrese opcion: ";
+            cin>> confirmacion;
+            ///si el usuario ingresa 1 entra a la funcion juegoUnJugador - si el usuario ingresa 0 vuelve al menu
+            if(confirmacion==1){
+             system("cls");
             JuegoUnJugador();
+            }
             /*
              int cantidad = 5;
             int dados[cantidad];
