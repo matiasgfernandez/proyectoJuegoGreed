@@ -16,8 +16,6 @@ int main()
         system("cls");
         ///ejecuta el menu con la opcion que ingresa el usuario
         EjecutarMenu(opcion);
-        ///pausa la pantalla hasta que el usuario toque una letra
-        system("pause");
     }
     while(opcion != 0);
 
