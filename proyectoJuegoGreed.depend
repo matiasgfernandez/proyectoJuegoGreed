@@ -19,22 +19,22 @@
 
 1728778641 c:\programacion\juegogreed\proyectojuegogreed\juego.h
 
-1729899245 source:c:\git\proyectojuegogreed\juego.cpp
+1730240353 source:c:\git\proyectojuegogreed\juego.cpp
 	<iostream>
 	<ctime>
 	"Juego.h"
 
-1729898743 c:\git\proyectojuegogreed\juego.h
+1730240252 c:\git\proyectojuegogreed\juego.h
 
-1730046653 source:c:\git\proyectojuegogreed\menu.cpp
+1730244591 source:c:\git\proyectojuegogreed\menu.cpp
 	<iostream>
 	"Menu.h"
 	"Juego.h"
 	"Creditos.h"
 
-1730012751 c:\git\proyectojuegogreed\menu.h
+1730244591 c:\git\proyectojuegogreed\menu.h
 
-1730013221 source:c:\git\proyectojuegogreed\main.cpp
+1730244591 source:c:\git\proyectojuegogreed\main.cpp
 	<iostream>
 	<ctime>
 	"Menu.h"
@@ -83,7 +83,7 @@
 
 1730046505 c:\git\proyectojuegogreed\creditos.h
 
-1730047893 source:c:\git\proyectojuegogreed\creditos.cpp
+1730237190 source:c:\git\proyectojuegogreed\creditos.cpp
 	<iostream>
 	"Creditos.h"
 

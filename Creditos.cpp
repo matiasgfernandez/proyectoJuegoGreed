@@ -5,7 +5,7 @@ void Creditos(){
 
 cout<<endl<< "            ___________________________________"<<endl ;
 cout<< "           |                                   |"<<endl;
-cout<< "           |CREADORES DEL JUEGO: EQUIPO BLA BLA|"<<endl;
+cout<< "           |CREADORES DEL JUEGO: EQUIPO MASTER |"<<endl;
 cout<< "           |___________________________________|"<<endl;
 
 cout<< "      ________       ________________       ________________"<<endl;

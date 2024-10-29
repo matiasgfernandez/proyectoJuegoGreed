@@ -19,3 +19,4 @@ bool PreguntaPorProximaTirada(int DadosRestantes);
 void PuntosDeRonda(int CantidadDados,int PuntosXtirada,int PuntosTotalesRonda[],int ronda);
 int CalcularPuntosTotalesRondas(int puntosRondas[]);
 void MostrarPuntosTotales(int puntos);
+bool ProximaTirada(bool DuplicoPuntos, int DadosQueLeQuedan);
