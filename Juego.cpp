@@ -12,7 +12,29 @@ string PedirNombreJugador()
     getline(cin, nombre);
     return nombre;
 }
+void dibujarDados(int cantidadDados,int  dados[]){
 
+/// Imprimir los dados uno al lado del otro
+    for (int j = 0; j < cantidadDados; j++) {
+        cout << "   ___  ";
+    }
+    cout << endl;
+
+    for (int j = 0; j < cantidadDados; j++) {
+        cout << "  |   | ";
+    }
+    cout << endl;
+
+    for (int j = 0; j < cantidadDados; j++) {
+        cout << "  | " << dados[j] << " | ";
+    }
+    cout << endl;
+
+    for (int j = 0; j < cantidadDados; j++) {
+        cout << "  |___| ";
+    }
+    cout << endl;
+}
 /// 2. muestra el nombre del jugador
 void MostrarNombreJugador1(string nombre)
 {
@@ -38,12 +60,9 @@ void TirarDadosBloqueadores(int (DadosBloqueadoresJugador1)[], int (DadosBloquea
 /// 5. funcion que muestra los dados bloqueadores
 void MostrarDadosBloqueadores(int DadosBloqueador[])
 {
-    cout << endl;
-    cout << "                      _______" << endl;
-    cout << "                     |" << "   |" << "   |" << endl;
-    cout << "  Dados bloqueadores:| " << DadosBloqueador[0] << " | " << DadosBloqueador[1] << " |" << endl;
-    cout << "                     |___|___|" << endl;
-    cout << endl;
+    cout<<endl<< "Dados bloqueadores: "<<endl;
+    dibujarDados(2, DadosBloqueador);
+    cout<<endl;
 }
 bool PreguntaPorProximaTirada(int DadosRestantes)
 {
@@ -69,16 +88,8 @@ void TiradaDeLosDados(int Dados[], int Cantidad, int DadosBloqueadoresJugador1[]
     {
         Dados[i] = TirarDado();
     }
-    for (int j = 0; j < Cantidad; j++)
-    {
-        cout << "Dado #" << j + 1 << ":" << Dados[j] << endl;
-    }
-
+   dibujarDados(Cantidad,Dados);
 }
-
-
-
-
 /// 8. funcion para saber que dado coincide con un dado bloqueador
 int DadosQueCoincidenConDadosBloqueadores(int dados[], int cantidad, int DadosBloqueadoresJugador1[])
 {
@@ -91,7 +102,7 @@ int DadosQueCoincidenConDadosBloqueadores(int dados[], int cantidad, int DadosBl
             {
                 if (dados[j] == DadosBloqueadoresJugador1[i])
                 {
-                    cout << "El dado#" << j + 1 << " coincide con el dado bloqueador #" << i + 1 << endl;
+                    cout <<endl<<"El dado#" << j + 1 << " coincide con el dado bloqueador #" << i + 1 << endl;
                     CoincideConDadoBloqueador++;
                 }
             }
@@ -298,6 +309,15 @@ void JuegoUnJugador()
             MostrarPuntos(puntajeTirada);
             ///va sumando los puntos de la tirada en el vector de puntajeRonda
             PuntosDeRonda(DadosRestantes,puntajeTirada,puntajeRonda,i-1);
+            ///pausa la pantalla para que el usuario pueda analizar la tirada
+            system("pause");
+            ///borra la pantalla
+            system("cls");
+            ///muestra los puntos actualizados
+            mostrarRondaActual(i,nombreJugador,puntajeRonda);
+            ///muestra sus dados bloqueadores
+            MostrarDadosBloqueadores(DadosBloqueadoresJugador1);
+            ///el jugador elige si quiere hacer otra tirada
             EleccionJugador=ProximaTirada(duplico, DadosRestantes);
             ///pausa la pantalla
             system("pause");

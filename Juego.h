@@ -20,3 +20,4 @@ void PuntosDeRonda(int CantidadDados,int PuntosXtirada,int PuntosTotalesRonda[],
 int CalcularPuntosTotalesRondas(int puntosRondas[]);
 void MostrarPuntosTotales(int puntos);
 bool ProximaTirada(bool DuplicoPuntos, int DadosQueLeQuedan);
+void dibujarDados(int cantidadDados,int  dados[]);
