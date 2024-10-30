@@ -74,7 +74,7 @@ bool PreguntaPorProximaTirada(int DadosRestantes)
     }
     else
     {
-        cout<< "se ha quedado sin dados para tirar, ha perdido todos sus puntos"<<endl;
+        cout<< "se ha quedado sin dados para tirar, ha perdido todos los puntos de esta ronda"<<endl;
         EleccionJugador=false;
     }
     return EleccionJugador;

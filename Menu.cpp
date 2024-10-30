@@ -64,7 +64,7 @@ void EjecutarMenu(int opcionElegida)
 
 int confimacion (int OpcionDeMenu)
 {
-    bool Entrar;
+    int Entrar;
     bool Error=false;
     switch(OpcionDeMenu)
     {
@@ -110,7 +110,6 @@ int confimacion (int OpcionDeMenu)
 ///da una vuelta hasta que el usuario ingrese un numero valido
         }
         while(Entrar!=0 && Entrar!=1);
-        system("pause");
         break;
     case 3:
         do
@@ -132,7 +131,6 @@ int confimacion (int OpcionDeMenu)
 ///da una vuelta hasta que el usuario ingrese un numero valido
         }
         while(Entrar!=0 && Entrar!=1);
-        system("pause");
         break;
     case 4:
         do
