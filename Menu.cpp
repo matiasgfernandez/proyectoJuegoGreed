@@ -4,7 +4,26 @@
 #include "Creditos.h"
 #include "rlutil.h"
 using namespace std;
+void BarraDeCarga(){
+int valor=0;
+HacerColorLetra(11);
+rlutil::locate(40,4);
+cout<< "******************"<<endl;
+cout<< "                                       *WELCOME TO GREED*"<<endl;
+              cout<< "                                       ******************"<<endl<<endl;
+              cout<< "                                            CARGANDO..."<<endl;
 
+while(valor<=100){
+
+
+rlutil::setBackgroundColor(1);
+rlutil::msleep(rand()%80);
+
+cout<< " ";
+valor++;
+}
+HacerColorLetra(14);
+}
 void MostrarOpcion(int columna, int fila){
     rlutil::locate(columna,fila);
 cout<<  "*************************"<<endl;

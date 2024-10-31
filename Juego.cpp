@@ -84,7 +84,7 @@ bool PreguntaPorProximaTirada(int DadosRestantes)
     }
     else
     {
-        HacerColorLetra(0);
+        HacerColorLetra(15);
         cout<< "¡POR CODICIOSO! se ha quedado sin dados para tirar, ha perdido todos los puntos de esta ronda"<<endl;
         EleccionJugador=false;
         HacerColorLetra(14);

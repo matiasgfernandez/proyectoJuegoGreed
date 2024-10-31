@@ -8,6 +8,7 @@ int main()
 {
     srand(time(0));
     int opcion;
+    BarraDeCarga();
     do
     {
         ///menu
