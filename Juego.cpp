@@ -1,19 +1,25 @@
 #include <iostream>
 #include <ctime>
 #include "Juego.h"
+#include "rlutil.h"
 using namespace std;
-
+void HacerColorLetra(int Color){
+rlutil::setColor(Color);
+}
 /// 1. pide nombre del jugador
 string PedirNombreJugador()
 {
     (cin.ignore());
     string nombre;
-    cout << "Ingrese su nombre: ";
+   HacerColorLetra(14);
+    rlutil::locate(4,3);
+
+    cout << "INGRESE SU NOMBRE:";
     getline(cin, nombre);
     return nombre;
 }
 void dibujarDados(int cantidadDados,int  dados[]){
-
+    HacerColorLetra(15);
 /// Imprimir los dados uno al lado del otro
     for (int j = 0; j < cantidadDados; j++) {
         cout << "   ___  ";
@@ -34,6 +40,7 @@ void dibujarDados(int cantidadDados,int  dados[]){
         cout << "  |___| ";
     }
     cout << endl;
+    HacerColorLetra(14);
 }
 /// 2. muestra el nombre del jugador
 void MostrarNombreJugador1(string nombre)
@@ -69,13 +76,18 @@ bool PreguntaPorProximaTirada(int DadosRestantes)
     bool EleccionJugador;
     if(DadosRestantes!=0)
     {
-        cout << "Le quedan "<<DadosRestantes<<" dados, desea realizar un lanzamiento? Ingrese 1 o 0. Si=1 y No=0 " << endl;
+        HacerColorLetra(11);
+        cout << "LE QUEDAN "<<DadosRestantes<<" DADOS";
+        HacerColorLetra(14);
+        cout<<", desea realizar un lanzamiento? Ingrese 1 o 0. Si=1 y No=0 " << endl;
         cin >> EleccionJugador;
     }
     else
     {
-        cout<< "se ha quedado sin dados para tirar, ha perdido todos los puntos de esta ronda"<<endl;
+        HacerColorLetra(0);
+        cout<< "¡POR CODICIOSO! se ha quedado sin dados para tirar, ha perdido todos los puntos de esta ronda"<<endl;
         EleccionJugador=false;
+        HacerColorLetra(14);
     }
     return EleccionJugador;
 }

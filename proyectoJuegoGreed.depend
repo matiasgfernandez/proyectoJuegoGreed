@@ -19,26 +19,29 @@
 
 1728778641 c:\programacion\juegogreed\proyectojuegogreed\juego.h
 
-1730295213 source:c:\git\proyectojuegogreed\juego.cpp
+1730351088 source:c:\git\proyectojuegogreed\juego.cpp
 	<iostream>
 	<ctime>
 	"Juego.h"
+	"rlutil.h"
 
-1730251021 c:\git\proyectojuegogreed\juego.h
+1730349059 c:\git\proyectojuegogreed\juego.h
 
-1730296029 source:c:\git\proyectojuegogreed\menu.cpp
+1730349711 source:c:\git\proyectojuegogreed\menu.cpp
 	<iostream>
 	"Menu.h"
 	"Juego.h"
 	"Creditos.h"
+	"rlutil.h"
 
-1730296245 c:\git\proyectojuegogreed\menu.h
+1730349059 c:\git\proyectojuegogreed\menu.h
 
-1730296238 source:c:\git\proyectojuegogreed\main.cpp
+1730336864 source:c:\git\proyectojuegogreed\main.cpp
 	<iostream>
 	<ctime>
 	"Menu.h"
 	"Juego.h"
+	"rlutil.h"
 
 1728950344 source:c:\users\mat\desktop\utn\git\proyectojuegogreed\juego.cpp
 	<iostream>
@@ -86,4 +89,18 @@
 1730237190 source:c:\git\proyectojuegogreed\creditos.cpp
 	<iostream>
 	"Creditos.h"
+
+1730336367 c:\git\proyectojuegogreed\rlutil.h
+	<iostream>
+	<string>
+	<cstdio>
+	<stdio.h>
+	<string.h>
+	<windows.h>
+	<conio.h>
+	<termios.h>
+	<unistd.h>
+	<sys/ioctl.h>
+	<sys/types.h>
+	<sys/time.h>
 

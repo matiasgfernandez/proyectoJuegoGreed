@@ -2,30 +2,48 @@
 #include "Menu.h"
 #include "Juego.h"
 #include "Creditos.h"
+#include "rlutil.h"
 using namespace std;
 
+void MostrarOpcion(int columna, int fila){
+    rlutil::locate(columna,fila);
+cout<<  "*************************"<<endl;
+
+    cout<< " *ingrese alguna opcion:"<<" *"<<endl;
+
+    cout<< " *"<< "************************"<<endl;
+}
 int menu()
 {
+    rlutil::setBackgroundColor(rlutil::RED);
+    rlutil::setColor(14);
     system("cls");
+
     int opcion;
-    cout<<endl<< "        _______"<<endl;
-    cout<<   "       |       | "<<endl;
-    cout << "       | GREED |            "<<endl;
-    cout<< "       |_______|"<<endl;
-    cout << " ______________________________"<<endl;
-    cout<< "|                              |";
-    cout <<endl<< "|1 - MODO UN JUGADOR           |" << endl;
-    cout<< "|                              |";
-    cout <<endl<< "|2 - MODO DOS JUGADORES        |" << endl;
-    cout<< "|                              |";
-    cout <<endl<< "|3 - ESTADISTICAS              |" << endl;
-    cout<< "|                              |";
-    cout << endl<<"|4 - CREDITOS                  |" << endl;
-    cout<< "|                              |";
-    cout << endl<<"|0 - SALIR                     |" << endl;
-    cout << "|______________________________|" <<endl;
-    cout << endl << "ingrese alguna opci¢n: ";
+    cout<<endl<< "                                                  _______"<<endl;
+    cout<<   "                                                 |       | "<<endl;
+    cout << "                                                 | GREED |            "<<endl;
+    cout<< "                                                 |_______|"<<endl;
+    cout << "                                      _______________________________"<<endl;
+    cout<< "                                     |                               |";
+    cout <<endl<< "                                     |    1 - MODO UN JUGADOR        |" << endl;
+    cout<< "                                     |                               |";
+    cout <<endl<< "                                     |    2 - MODO DOS JUGADORES     |" << endl;
+    cout<< "                                     |                               |";
+    cout <<endl<< "                                     |    3 - ESTADISTICAS           |" << endl;
+    cout<< "                                     |                               |";
+    cout << endl<<"                                     |    4 - CREDITOS               |" << endl;
+    cout<< "                                     |                               |";
+    cout << endl<<"                                     |    0 - SALIR                  |" << endl;
+    cout << "                                     |_______________________________|" <<endl;
+HacerColorLetra(7);
+    cout<<  "                                         *************************"<<endl;
+    cout<< "                                         *ingrese alguna opcion:"<<" *"<<endl;
+    cout<< "                                         *"<< "************************"<<endl;
+    HacerColorLetra(14);
+    rlutil::locate(65,19);
     cin >> opcion;
+
     return opcion;
 }
 
@@ -56,8 +74,10 @@ void EjecutarMenu(int opcionElegida)
         ejecutarConfirmacion(Entrar,opcionElegida);
         break;
     default:
+        rlutil::setColor(rlutil::YELLOW);
         cout << "Numero invalido...por favor ingrese un numero de [0 al 4]" << endl;
         system("pause");
+        rlutil::setColor(rlutil::WHITE);
         break;
     }
 }
@@ -83,12 +103,12 @@ int confimacion (int OpcionDeMenu)
             Error=true;
 ///pregunta si esta seguro de entrar
             cout<<endl<< "Esta seguro que desea entrar al modo UN JUGADOR?  ingrese 1 o 0 [ 1 = si | 0 = no]"<<endl;
-            cout<<endl<< "ingrese opcion: ";
+            MostrarOpcion(2,5);
+            rlutil::locate(25,6);
             cin>> Entrar;
 ///da una vuelta hasta que el usuario ingrese un numero valido
         }
         while(Entrar!=0 && Entrar!=1);
-        system("pause");
         break;
     case 2:
         do
@@ -105,7 +125,8 @@ int confimacion (int OpcionDeMenu)
             Error=true;
 ///pregunta si esta seguro de entrar
             cout<<endl<< "Esta seguro que desea entrar al modo DOS JUGADORES?  ingrese 1 o 0 [ 1 = si | 0 = no]"<<endl;
-            cout<<endl<< "ingrese opcion: ";
+            MostrarOpcion(2,5);
+            rlutil::locate(25,6);
             cin>> Entrar;
 ///da una vuelta hasta que el usuario ingrese un numero valido
         }
@@ -126,7 +147,8 @@ int confimacion (int OpcionDeMenu)
             Error=true;
 ///pregunta si esta seguro de entrar
             cout<<endl<< "Esta seguro que desea entrar a las ESTADISTICAS?  ingrese 1 o 0 [ 1 = si | 0 = no]"<<endl;
-            cout<<endl<< "ingrese opcion: ";
+           MostrarOpcion(2,5);
+            rlutil::locate(25,6);
             cin>> Entrar;
 ///da una vuelta hasta que el usuario ingrese un numero valido
         }
@@ -147,12 +169,12 @@ int confimacion (int OpcionDeMenu)
             Error=true;
 ///pregunta si esta seguro de entrar
             cout<<endl<< "Esta seguro que desea entrar a los CREDITOS?  ingrese 1 o 0 [ 1 = si | 0 = no]"<<endl;
-            cout<<endl<< "ingrese opcion: ";
+           MostrarOpcion(2,5);
+            rlutil::locate(25,6);
             cin>> Entrar;
 ///da una vuelta hasta que el usuario ingrese un numero valido
         }
         while(Entrar!=0 && Entrar!=1);
-        system("pause");
         break;
     case 0:
     /*

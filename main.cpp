@@ -3,7 +3,7 @@
 #include <ctime>
 #include "Menu.h"
 #include "Juego.h"
-
+#include "rlutil.h"
 int main()
 {
     srand(time(0));
