@@ -73,20 +73,29 @@ void MostrarDadosBloqueadores(int DadosBloqueador[])
 }
 bool PreguntaPorProximaTirada(int DadosRestantes)
 {
-    bool EleccionJugador;
+    int EleccionJugador;
+    bool Error=false;
     if(DadosRestantes!=0)
     {
+        do{
+          if(Error==true){
+              HacerColorLetra(7);
+            cout<< "ERROR! usted ha ingresado un numero invalido."<<endl;
+        }
         HacerColorLetra(11);
         cout << "LE QUEDAN "<<DadosRestantes<<" DADOS";
         HacerColorLetra(14);
+
         cout<<", desea realizar un lanzamiento? Ingrese 1 o 0. Si=1 y No=0 " << endl;
         cin >> EleccionJugador;
+        Error=true;
+        }while(EleccionJugador!=0 && EleccionJugador!=1);
     }
     else
     {
         HacerColorLetra(15);
         cout<< "¡POR CODICIOSO! se ha quedado sin dados para tirar, ha perdido todos los puntos de esta ronda"<<endl;
-        EleccionJugador=false;
+        EleccionJugador=0;
         HacerColorLetra(14);
     }
     return EleccionJugador;

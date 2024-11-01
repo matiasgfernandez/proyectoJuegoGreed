@@ -38,6 +38,8 @@
 		<Unit filename="Juego.h" />
 		<Unit filename="Menu.cpp" />
 		<Unit filename="Menu.h" />
+		<Unit filename="ModoDosJugadores.cpp" />
+		<Unit filename="ModoDosJugadores.h" />
 		<Unit filename="main.cpp" />
 		<Extensions>
 			<lib_finder disable_auto="1" />

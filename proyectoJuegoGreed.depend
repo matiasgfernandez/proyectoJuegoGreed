@@ -19,13 +19,13 @@
 
 1728778641 c:\programacion\juegogreed\proyectojuegogreed\juego.h
 
-1730483434 source:c:\git\proyectojuegogreed\juego.cpp
+1730503675 source:c:\git\proyectojuegogreed\juego.cpp
 	<iostream>
 	<ctime>
 	"Juego.h"
 	"rlutil.h"
 
-1730349059 c:\git\proyectojuegogreed\juego.h
+1730503500 c:\git\proyectojuegogreed\juego.h
 
 1730481855 source:c:\git\proyectojuegogreed\menu.cpp
 	<iostream>
@@ -105,7 +105,7 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1730478162 source:c:\git\proyectojuegogreed\mododosjugadores.cpp
+1730502352 source:c:\git\proyectojuegogreed\mododosjugadores.cpp
 	<iostream>
 	<ctime>
 	"ModoDosJugadores.h"
