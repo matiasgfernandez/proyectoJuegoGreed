@@ -256,7 +256,35 @@ int CalcularPuntosTotalesRondas(int puntosRondas[])
 }
 void MostrarPuntosTotales(int puntos)
 {
-    cout<<endl<< "sus puntos totales obtenidos son: "<<puntos<<endl;
+    ///oculta el cursor
+    rlutil::hidecursor();
+    for(int i=0;i<=10;i++){
+    system("cls");
+    ///muestra el mensaje solo cuando el numero es par
+    if(i%2==0){
+          ///hacer de color negro las letras
+            HacerColorLetra(0);
+            ///lo ubica en la columna 40 y fila 2
+             rlutil::locate(40,2);
+    ///diseño de recuadro de ascii
+    cout<< (char)201 <<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205;
+    cout<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)187<<endl;
+    rlutil::locate(40,3);
+    cout<<(char)186<< "FINAL DE LAS RONDAS"<<(char)186<<endl;
+    rlutil::locate(40,4);
+    cout<<(char)200 <<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205;
+    cout<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)188<<endl;
+    }
+    ///velocidad del parpadeo
+    rlutil::msleep(100);
+    }
+    rlutil::locate(33,5);
+    HacerColorLetra(14);
+    cout<< "SUS PUNTOS TOTALES OBTENIDOS SON: "<<puntos<<endl;
+    ///pausa pantalla
+    system("pause");
+///vuelve a mostrar el cursor antes de irse de la funcion
+rlutil::showcursor();
 }
 bool ProximaTirada(bool DuplicoPuntos, int DadosQueLeQuedan){
 bool Tirar;
@@ -341,8 +369,7 @@ void JuegoUnJugador()
     puntosTotales=CalcularPuntosTotalesRondas(puntajeRonda);
     ///muestra los puntosTotales
     MostrarPuntosTotales(puntosTotales);
-    ///pausa pantalla
-    system("pause");
+
 }
 
 

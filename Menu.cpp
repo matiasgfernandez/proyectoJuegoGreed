@@ -2,6 +2,7 @@
 #include "Menu.h"
 #include "Juego.h"
 #include "Creditos.h"
+#include "ModoDosJugadores.h"
 #include "rlutil.h"
 using namespace std;
 void BarraDeCarga(){
@@ -13,16 +14,24 @@ cout<< "                                       *WELCOME TO GREED*"<<endl;
               cout<< "                                       ******************"<<endl<<endl;
               cout<< "                                            CARGANDO..."<<endl;
 
-while(valor<=100){
-
-
+while(valor<70){
+///pone en color azul la barra
 rlutil::setBackgroundColor(1);
-rlutil::msleep(rand()%80);
+///ubica la barra en la columna 20 y fila 10
+rlutil::locate(20,10);
+for(int i=1;i<=valor;i++){
+        ///caracter de ascii
+cout<< (char)186;
 
-cout<< " ";
-valor++;
 }
+
+
 HacerColorLetra(14);
+///hace que la barra no cargue lineal
+valor+=rand()%5;
+///la velocidad de la barra
+rlutil::msleep(rand()%300);
+}
 }
 void MostrarOpcion(int columna, int fila){
     rlutil::locate(columna,fila);
@@ -236,7 +245,7 @@ void ejecutarConfirmacion(int DatoDeConfirmacion, int OpcionDeMenu)
             JuegoUnJugador();
             break;
         case 2:
-            cout << "juego de dos jugadores" << endl;
+            JuegoDosJugadores();
             break;
         case 3:
             cout << "estadisticas" << endl;
