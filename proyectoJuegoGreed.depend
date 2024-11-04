@@ -105,11 +105,12 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1730502352 source:c:\git\proyectojuegogreed\mododosjugadores.cpp
+1730705243 source:c:\git\proyectojuegogreed\mododosjugadores.cpp
 	<iostream>
 	<ctime>
 	"ModoDosJugadores.h"
 	"rlutil.h"
 
-1730477415 c:\git\proyectojuegogreed\mododosjugadores.h
+1730705906 c:\git\proyectojuegogreed\mododosjugadores.h
+	<string>
 
