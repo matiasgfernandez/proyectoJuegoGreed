@@ -32,10 +32,18 @@ void ColorLetra(int Color)
     }
 }
 
-bool PreguntarPorTirada(int DadosRestantes)
+bool PreguntarPorTirada(bool &duplicoPuntos, int DadosRestantes)
 {
     int EleccionJugador;
     bool Error=false;
+///en caso que haya multiplicado puntos la tirada es obligatoria
+if(duplicoPuntos==true){
+    cout<<endl<< "Tirada de dados obligatoria"<<endl;
+    system("pause");
+    EleccionJugador=true;
+    duplicoPuntos=false;
+
+}else{
     if(DadosRestantes!=0)
     {
         do
@@ -62,6 +70,7 @@ bool PreguntarPorTirada(int DadosRestantes)
         EleccionJugador=0;
         ColorLetra(14);
     }
+}
     return EleccionJugador;
 }
 
@@ -121,9 +130,133 @@ void InformarRondaActual(int ronda, string nombreJugador, int puntajeRonda[])
     }
 
 }
+void TiradaDeDados(int Dados[], int Cantidad)
+{
+    cout<<"Lanzando dados..."<<endl<<endl;
+    for (int i = 0; i < Cantidad; i++)
+    {
+        Dados[i] = TirarUnDado();
+    }
+   dibujarLosDados(Cantidad,Dados);
+}
+int DadosIgualesABloqueadores(int dados[], int cantidad, int DadosBloqueadoresJugador[])
+{
+    int CoincideConDadoBloqueador = 0; // contador
+    if(DadosBloqueadoresJugador[0]!=DadosBloqueadoresJugador[1])
+    {
+        for (int i = 0; i < 2; i++)
+        {
+            for (int j = 0; j < cantidad; j++)
+            {
+                if (dados[j] == DadosBloqueadoresJugador[i])
+                {
+                    cout <<endl<<"El dado#" << j + 1 << " coincide con el dado bloqueador #" << i + 1 << endl;
+                    CoincideConDadoBloqueador++;
+                }
+            }
+        }
+    }
+    else
+    {
+        for (int i = 0; i < cantidad; i++)
+        {
+            {
+                if (dados[i] == DadosBloqueadoresJugador[0])
+                {
+                    cout << "El dado#" << i + 1 << " coincide con los dados bloqueadores" << endl;
+                    CoincideConDadoBloqueador++;
+                }
+            }
+        }
+    }
+    cantidad -= CoincideConDadoBloqueador;
+    return cantidad;
+}
+int puntajeTirada(int DadosBloqueadores[],int dados[],int cantidad, bool &duplico)
+{
+    int  PuntosJugadorTirada=0;
+    bool  duplicar;
+    bool DadoIgualBloqueador=false;
 
+    if(cantidad>0)
+    {
+        for(int i=0; i<cantidad; i++)
+        {
+            if(dados[i]!=DadosBloqueadores[0] && dados[i]!=DadosBloqueadores[1])
+            {
+                PuntosJugadorTirada+=dados[i];
+            }
+            else
+            {
+                DadoIgualBloqueador=true;
+            }
+        }
+        if(DadoIgualBloqueador==false && cantidad>=2)
+        {
+            duplicar=ComprobarDadosIguales(dados,cantidad);
+            if(duplicar==true)
+            {
+                PuntosJugadorTirada*=2;
+                duplico=true;
+            }
+        }
+    }
+    return PuntosJugadorTirada;
+}
+void MostrarLosPuntos(int PuntosObtenidos)
+{
+    cout << endl << "usted ha obtenido " << PuntosObtenidos << " puntos en esta tirada" << endl;
+}
+bool ComprobarDadosIguales(int dados[], int Cantidad)
+{
+    bool SonDadosIguales = false;
+    bool PrimerDado = true;
+    int numeroanterior;
+    bool DadosDiferentes = false;
+    if (Cantidad >= 2)
+    {
+        for (int i = 0; i < Cantidad; i++)
+        {
+            if (PrimerDado == true)
+            {
+                numeroanterior = dados[i];
+                PrimerDado = false;
+            }
+            else
+            {
+                if (numeroanterior == dados[i])
+                {
+                    numeroanterior = dados[i];
+                }
+                else
+                {
+                    DadosDiferentes = true;
+                }
+            }
+        }
+    }
+    if (DadosDiferentes == false)
+    {
+        SonDadosIguales = true;
+    }
+    return SonDadosIguales;
+}
+void PuntosDeLasRondas(int CantidadDados,int PuntosXtirada,int PuntosTotalesRonda[],int ronda)
+{
+
+    if(CantidadDados==0)
+    {
+        PuntosTotalesRonda[ronda]=0;
+    }
+    else
+    {
+        PuntosTotalesRonda[ronda]+= PuntosXtirada;
+    }
+
+}
 void JuegoDosJugadores()
 {
+    bool Duplico=false;
     int PuntajeRondaJugador1[3] {};
     int PuntajeRondaJugador2[3] {};
     string NombresJugadores[2];
@@ -137,9 +270,10 @@ void JuegoDosJugadores()
     for(int i=1; i<=3; i++)
     {
         system("cls");
-        int DadosJugador=5;
+         int DadosRestantes=5;
         bool eleccionJugador;
 
+          int  PuntosTirada;
         ///informa la ronda actual, de cual jugador  es el turno y sus puntajes en cada ronda
         InformarRondaActual(i,NombresJugadores[0],PuntajeRondaJugador1);
         ///tira los dados bloqueadores de ambos jugadores
@@ -147,38 +281,58 @@ void JuegoDosJugadores()
         ///muestra los dados bloqueadores del jugador 1
         MostrarLosDadosBloqueadores(DadosBloqueadoresJugador1);
         ///pregunta si quiere tirar una tirada
-        eleccionJugador=PreguntarPorTirada(DadosJugador);
+        eleccionJugador=PreguntarPorTirada(Duplico,DadosRestantes);
         ///ciclo inexacto del jugador 1, finaliza el jugador lo decida o cuando el jugador se queda sin dados
-        while(eleccionJugador==true && DadosJugador!=0)
+        while(eleccionJugador==true && DadosRestantes!=0)
         {
+                int DadosJugador[DadosRestantes];
+
             system("cls");
             InformarRondaActual(i,NombresJugadores[0],PuntajeRondaJugador1);
             ///muestra nuevamente los dados bloqueadores
             MostrarLosDadosBloqueadores(DadosBloqueadoresJugador1);
-            /*
-            /// falta
-            hacer la tirada de dados
-            fijarse cual coincide con un dado bloqueador
-            descontar la cantidad de dados que hayan coincido con un bloqueador
-            sumar los puntos
-            */
+            TiradaDeDados(DadosJugador,DadosRestantes);
+            PuntosTirada=puntajeTirada(DadosBloqueadoresJugador1,DadosJugador,DadosRestantes,Duplico);
+            DadosRestantes=DadosIgualesABloqueadores(DadosJugador,DadosRestantes,DadosBloqueadoresJugador1);
+            MostrarLosPuntos(PuntosTirada);
+            PuntosDeLasRondas(DadosRestantes,PuntosTirada,PuntajeRondaJugador1,i-1);
+      system("pause");
+      system("cls");
+       InformarRondaActual(i,NombresJugadores[0],PuntajeRondaJugador1);
+       MostrarLosDadosBloqueadores(DadosBloqueadoresJugador1);
+
             ///le pregunta al jugador si quiere hacer otra tirada
-            eleccionJugador=PreguntarPorTirada(DadosJugador);
+            eleccionJugador=PreguntarPorTirada(Duplico,DadosRestantes);
 
         }
-        system("pause");
-        system("cls");
         ///jugador 2
+
+        system("cls");
+        DadosRestantes=5;
+         Duplico=false;
         ///preguntar si quiere tirar una tirada
         InformarRondaActual(i,NombresJugadores[1],PuntajeRondaJugador2);
         MostrarLosDadosBloqueadores(DadosBloqueadoresJugador2);
-        eleccionJugador=PreguntarPorTirada(DadosJugador);
-        while(eleccionJugador==true && DadosJugador!=0)
+        eleccionJugador=PreguntarPorTirada(Duplico,DadosRestantes);
+        while(eleccionJugador==true && DadosRestantes!=0)
         {
             system("cls");
+            int DadosJugador2[DadosRestantes];
             InformarRondaActual(i,NombresJugadores[1],PuntajeRondaJugador2);
             MostrarLosDadosBloqueadores(DadosBloqueadoresJugador2);
-            eleccionJugador=PreguntarPorTirada(DadosJugador);
+            TiradaDeDados(DadosJugador2,DadosRestantes);
+             PuntosTirada=puntajeTirada(DadosBloqueadoresJugador2,DadosJugador2,DadosRestantes,Duplico);
+            DadosRestantes=DadosIgualesABloqueadores(DadosJugador2,DadosRestantes,DadosBloqueadoresJugador2);
+             MostrarLosPuntos(PuntosTirada);
+             PuntosDeLasRondas(DadosRestantes,PuntosTirada,PuntajeRondaJugador2,i-1);
+      system("pause");
+      system("cls");
+       InformarRondaActual(i,NombresJugadores[1],PuntajeRondaJugador2);
+       MostrarLosDadosBloqueadores(DadosBloqueadoresJugador2);
+
+            eleccionJugador=PreguntarPorTirada(Duplico,DadosRestantes);
+
+
         }
 
     }
