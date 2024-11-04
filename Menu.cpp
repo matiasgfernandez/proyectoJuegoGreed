@@ -41,6 +41,61 @@ cout<<  "*************************"<<endl;
 
     cout<< " *"<< "************************"<<endl;
 }
+void DibujarLinea(int cantidad, int Modelo){
+for(int i=1; i<=cantidad;i++){
+    cout<< (char) Modelo;
+}
+}
+void FinDelJuego(){
+    system("cls");
+   ///oculta el cursor
+    rlutil::hidecursor();
+    for(int i=0;i<=10;i++){
+    system("cls");
+    ///muestra el mensaje solo cuando el numero es par
+    if(i%2==0){
+          ///hacer de color negro las letras
+            HacerColorLetra(0);
+            ///lo ubica en la columna 40 y fila 2
+             rlutil::locate(49,11);
+    ///diseño de recuadro de ascii
+    DibujarLinea(1,201);
+    DibujarLinea(13,205);
+    DibujarLinea(1,187);
+    cout<<endl;
+    rlutil::locate(49,12);
+    DibujarLinea(1,186);
+    HacerColorLetra(rand()%16);
+    cout<<"FIN DEL JUEGO";
+    HacerColorLetra(0);
+    DibujarLinea(1,186);
+    cout<<endl;
+    rlutil::locate(49,13);
+
+    DibujarLinea(1,200);
+    DibujarLinea(13,205);
+    DibujarLinea(1,188);
+
+
+
+    cout<<endl;
+    }
+    ///velocidad del parpadeo
+    rlutil::msleep(100);
+    }
+    rlutil::locate(15,14);
+    DibujarLinea(1,201);
+    DibujarLinea(90,205);
+    DibujarLinea(1,187);
+     rlutil::locate(15,15);
+    cout<<(char)186<< " GRACIAS POR JUGAR NUESTRO JUEGO...toque cualquier tecla para volver al MENU PRINCIPAL :) "<<(char)186;
+     rlutil::locate(15,16);
+     DibujarLinea(1,200);
+     DibujarLinea(90,205);
+     DibujarLinea(1,188);
+    system("pause>nul");
+
+}
 int menu()
 {
     rlutil::setBackgroundColor(rlutil::RED);
@@ -243,9 +298,11 @@ void ejecutarConfirmacion(int DatoDeConfirmacion, int OpcionDeMenu)
         {
         case 1:
             JuegoUnJugador();
+            FinDelJuego();
             break;
         case 2:
             JuegoDosJugadores();
+            FinDelJuego();
             break;
         case 3:
             cout << "estadisticas" << endl;

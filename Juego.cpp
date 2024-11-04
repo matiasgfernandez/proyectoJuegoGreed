@@ -4,7 +4,9 @@
 #include "rlutil.h"
 using namespace std;
 void HacerColorLetra(int Color){
+if(Color!=4){
 rlutil::setColor(Color);
+}
 }
 /// 1. pide nombre del jugador
 string PedirNombreJugador()
