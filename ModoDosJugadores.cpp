@@ -5,15 +5,21 @@
 
 using namespace std;
 
+void DibujarDisenio(int cantidad, int Modelo)
+{
+    for(int i=1; i<=cantidad; i++)
+    {
+        cout<< (char) Modelo;
+    }
+}
 void PedirNombresJugadores(string NombresJugadores[])
 {
+    (cin.ignore());
     for(int i=0; i<2; i++)
     {
-        (cin.ignore());
-
+        system("cls");
         ColorLetra(14);
-        //rlutil::locate(4,3);
-
+        rlutil::locate(4,3);
         cout << "JUGADOR "<<i+1<<" INGRESE SU NOMBRE:";
         getline(cin, NombresJugadores[i]);
         system("cls");
@@ -37,40 +43,44 @@ bool PreguntarPorTirada(bool &duplicoPuntos, int DadosRestantes)
     int EleccionJugador;
     bool Error=false;
 ///en caso que haya multiplicado puntos la tirada es obligatoria
-if(duplicoPuntos==true){
-    cout<<endl<< "Tirada de dados obligatoria"<<endl;
-    system("pause");
-    EleccionJugador=true;
-    duplicoPuntos=false;
-
-}else{
-    if(DadosRestantes!=0)
+    if(duplicoPuntos==true)
     {
-        do
-        {
-            if(Error==true)
-            {
-                ColorLetra(7);
-                cout<< "ERROR! usted ha ingresado un numero invalido."<<endl;
-            }
-            ColorLetra(11);
-            cout << "LE QUEDAN "<<DadosRestantes<<" DADOS";
-            ColorLetra(14);
+        cout<<endl<< "Tirada de dados obligatoria"<<endl;
+        system("pause");
+        EleccionJugador=true;
+        duplicoPuntos=false;
 
-            cout<<", desea realizar un lanzamiento? Ingrese 1 o 0. Si=1 y No=0 " << endl;
-            cin >> EleccionJugador;
-            Error=true;
-        }
-        while(EleccionJugador!=0 && EleccionJugador!=1);
     }
     else
     {
-        ColorLetra(15);
-        cout<< "¡POR CODICIOSO! se ha quedado sin dados para tirar, ha perdido todos los puntos de esta ronda"<<endl;
-        EleccionJugador=0;
-        ColorLetra(14);
+        if(DadosRestantes!=0)
+        {
+            do
+            {
+                if(Error==true)
+                {
+                    ColorLetra(7);
+                    cout<< "ERROR! usted ha ingresado un numero invalido."<<endl;
+                }
+                ColorLetra(11);
+                cout << "LE QUEDAN "<<DadosRestantes<<" DADOS";
+                ColorLetra(14);
+
+                cout<<", desea realizar un lanzamiento? Ingrese 1 o 0. Si=1 y No=0 " << endl;
+                cin >> EleccionJugador;
+                Error=true;
+            }
+            while(EleccionJugador!=0 && EleccionJugador!=1);
+        }
+        else
+        {
+            ColorLetra(15);
+            cout<< "¡POR CODICIOSO! se ha quedado sin dados para tirar, ha perdido todos los puntos de esta ronda"<<endl<<endl;
+            system("pause");
+            EleccionJugador=0;
+            ColorLetra(14);
+        }
     }
-}
     return EleccionJugador;
 }
 
@@ -137,7 +147,7 @@ void TiradaDeDados(int Dados[], int Cantidad)
     {
         Dados[i] = TirarUnDado();
     }
-   dibujarLosDados(Cantidad,Dados);
+    dibujarLosDados(Cantidad,Dados);
 }
 int DadosIgualesABloqueadores(int dados[], int cantidad, int DadosBloqueadoresJugador[])
 {
@@ -254,11 +264,195 @@ void PuntosDeLasRondas(int CantidadDados,int PuntosXtirada,int PuntosTotalesRond
     }
 
 }
+void CalcularPuntosTotalesJugadores(int puntosRondasJugador1[], int puntosRondasJugador2[],int puntosTotalesJugador[])
+{
+    ///carga todos los puntos de la rondas de los 2 jugadores
+    for(int i=0; i<3; i++)
+    {
+        puntosTotalesJugador[0]+=puntosRondasJugador1[i];
+        puntosTotalesJugador[1]+=puntosRondasJugador2[i];
+    }
+
+}
+void MostrarGanador(int puntosTotalesJugadores[],string NombreJugador[],string ganador, bool empate)
+{
+    ///oculta el cursor
+    rlutil::hidecursor();
+    for(int i=0; i<=10; i++)
+    {
+        system("cls");
+        ///muestra el mensaje solo cuando el numero es par
+        if(i%2==0)
+        {
+            ///hacer de color negro las letras
+            ColorLetra(0);
+            ///lo ubica en la columna 40 y fila 2
+            rlutil::locate(40,2);
+            ///diseño de recuadro de ascii
+            DibujarDisenio(1,201);
+            DibujarDisenio(19,205);
+            DibujarDisenio(1,187);
+            cout<<endl;
+            rlutil::locate(40,3);
+            cout<<(char)186<< "FINAL DE LAS RONDAS"<<(char)186<<endl;
+            rlutil::locate(40,4);
+            DibujarDisenio(1,200);
+            rlutil::locate(41,4);
+            DibujarDisenio(19,205);
+            rlutil::locate(60,4);
+            DibujarDisenio(1,188);
+            cout<<endl;
+
+        }
+        ///velocidad del parpadeo
+        rlutil::msleep(100);
+    }
+
+    ColorLetra(14);
+    rlutil::locate(11,5);
+    DibujarDisenio(1,201);
+    DibujarDisenio(80,205);
+    DibujarDisenio(1,187);
+    rlutil::locate(11,6);
+    DibujarDisenio(1,186);
+    rlutil::locate(92,6);
+    DibujarDisenio(1,186);
+    rlutil::locate(11,7);
+    DibujarDisenio(1,186);
+    rlutil::locate(92,7);
+    DibujarDisenio(1,186);
+    if(empate==false)
+    {
+        rlutil::locate(37,6);
+        DibujarDisenio(1,201);
+        rlutil::locate(38,6);
+        DibujarDisenio(35,205);
+        rlutil::locate(37,7);
+        DibujarDisenio(1,186);
+        rlutil::locate(73,6);
+        DibujarDisenio(1,187);
+        rlutil::locate(39,7);
+        cout<< "GANADOR JUGADOR "<<ganador;
+        rlutil::locate(73,7);
+        DibujarDisenio(1,186);
+        rlutil::locate(37,8);
+        DibujarDisenio(1,200);
+        rlutil::locate(38,8);
+        DibujarDisenio(35,205);
+        rlutil::locate(73,8);
+        DibujarDisenio(1,188);
+        rlutil::locate(13,11);
+        cout<< "PUNTOS TOTALES OBTENIDOS DEL JUGADOR "<<NombreJugador[0]<<": "<< puntosTotalesJugadores[0];
+        rlutil::locate(92,8);
+        DibujarDisenio(1,186);
+        rlutil::locate(92,9);
+        DibujarDisenio(1,186);
+        rlutil::locate(92,10);
+        DibujarDisenio(1,186);
+        rlutil::locate(92,11);
+        DibujarDisenio(1,186);
+        rlutil::locate(11,9);
+        DibujarDisenio(1,186);
+        rlutil::locate(11,8);
+        DibujarDisenio(1,186);
+        rlutil::locate(11,10);
+        DibujarDisenio(1,186);
+        rlutil::locate(11,11);
+        DibujarDisenio(1,186);
+        rlutil::locate(11,12);
+        DibujarDisenio(1,186);
+        rlutil::locate(92,12);
+        DibujarDisenio(1,186);
+        rlutil::locate(11,13);
+        DibujarDisenio(1,186);
+        rlutil::locate(92,13);
+        DibujarDisenio(1,186);
+        rlutil::locate(13,13);
+
+        cout<< "PUNTOS TOTALES OBTENIDOS DEL JUGADOR "<<NombreJugador[1]<<": "<< puntosTotalesJugadores[1];
+        rlutil::locate(11,14);
+        DibujarDisenio(1,186);
+        rlutil::locate(92,14);
+        DibujarDisenio(1,186);
+        rlutil::locate(11,15);
+        DibujarDisenio(1,200);
+        DibujarDisenio(80,205);
+        DibujarDisenio(1,188);
+        cout<<endl;
+
+
+    }
+    else
+    {
+        rlutil::locate(46,6);
+        DibujarDisenio(1,201);
+        rlutil::locate(47,6);
+        DibujarDisenio(6,205);
+        rlutil::locate(53,6);
+        DibujarDisenio(1,187);
+        rlutil::locate(46,7);
+        DibujarDisenio(1,186);
+        rlutil::locate(47,7);
+        cout<<"EMPATE";
+        rlutil::locate(53,7);
+        DibujarDisenio(1,186);
+        rlutil::locate(46,8);
+        DibujarDisenio(1,200);
+        rlutil::locate(47,8);
+        DibujarDisenio(6,205);
+        rlutil::locate(53,8);
+        DibujarDisenio(1,188);
+        rlutil::locate(13,11);
+        cout<< "PUNTOS TOTALES OBTENIDOS DEL JUGADOR "<<NombreJugador[0]<<": "<< puntosTotalesJugadores[0];
+        rlutil::locate(11,12);
+        DibujarDisenio(1,186);
+        rlutil::locate(92,12);
+        DibujarDisenio(1,186);
+        rlutil::locate(11,13);
+        DibujarDisenio(1,186);
+        rlutil::locate(92,13);
+        DibujarDisenio(1,186);
+        rlutil::locate(13,13);
+
+        cout<< "PUNTOS TOTALES OBTENIDOS DEL JUGADOR "<<NombreJugador[1]<<": "<< puntosTotalesJugadores[1];
+        rlutil::locate(11,14);
+        DibujarDisenio(1,186);
+        rlutil::locate(92,14);
+        DibujarDisenio(1,186);
+        rlutil::locate(11,15);
+        DibujarDisenio(1,200);
+        DibujarDisenio(80,205);
+        DibujarDisenio(1,188);
+        cout<<endl;
+
+///vuelve a mostrar el cursor antes de irse de la funcion
+        rlutil::showcursor();
+    }
+}
+string AveriguarGanador(int puntosTotalesJugadores[],std::string NombreJugador[], bool &Empate)
+{
+    string ganador;
+    if(puntosTotalesJugadores[0] > puntosTotalesJugadores[1])
+    {
+        ganador= NombreJugador[0];
+    }
+    else if(puntosTotalesJugadores[1]>puntosTotalesJugadores[0])
+    {
+        ganador= NombreJugador[1];
+    }
+    else
+    {
+        Empate=true;
+    }
+    return ganador;
+}
 void JuegoDosJugadores()
 {
+    bool Empate=false;
     bool Duplico=false;
     int PuntajeRondaJugador1[3] {};
     int PuntajeRondaJugador2[3] {};
+    int puntajeTotalesJugadores[2] {};
     string NombresJugadores[2];
 
     ///guarda los valores de los dados bloqueadores del jugador 1
@@ -270,10 +464,10 @@ void JuegoDosJugadores()
     for(int i=1; i<=3; i++)
     {
         system("cls");
-         int DadosRestantes=5;
+        int DadosRestantes=5;
         bool eleccionJugador;
 
-          int  PuntosTirada;
+        int  PuntosTirada;
         ///informa la ronda actual, de cual jugador  es el turno y sus puntajes en cada ronda
         InformarRondaActual(i,NombresJugadores[0],PuntajeRondaJugador1);
         ///tira los dados bloqueadores de ambos jugadores
@@ -285,7 +479,7 @@ void JuegoDosJugadores()
         ///ciclo inexacto del jugador 1, finaliza el jugador lo decida o cuando el jugador se queda sin dados
         while(eleccionJugador==true && DadosRestantes!=0)
         {
-                int DadosJugador[DadosRestantes];
+            int DadosJugador[DadosRestantes];
 
             system("cls");
             InformarRondaActual(i,NombresJugadores[0],PuntajeRondaJugador1);
@@ -296,10 +490,10 @@ void JuegoDosJugadores()
             DadosRestantes=DadosIgualesABloqueadores(DadosJugador,DadosRestantes,DadosBloqueadoresJugador1);
             MostrarLosPuntos(PuntosTirada);
             PuntosDeLasRondas(DadosRestantes,PuntosTirada,PuntajeRondaJugador1,i-1);
-      system("pause");
-      system("cls");
-       InformarRondaActual(i,NombresJugadores[0],PuntajeRondaJugador1);
-       MostrarLosDadosBloqueadores(DadosBloqueadoresJugador1);
+            system("pause");
+            system("cls");
+            InformarRondaActual(i,NombresJugadores[0],PuntajeRondaJugador1);
+            MostrarLosDadosBloqueadores(DadosBloqueadoresJugador1);
 
             ///le pregunta al jugador si quiere hacer otra tirada
             eleccionJugador=PreguntarPorTirada(Duplico,DadosRestantes);
@@ -309,7 +503,7 @@ void JuegoDosJugadores()
 
         system("cls");
         DadosRestantes=5;
-         Duplico=false;
+        Duplico=false;
         ///preguntar si quiere tirar una tirada
         InformarRondaActual(i,NombresJugadores[1],PuntajeRondaJugador2);
         MostrarLosDadosBloqueadores(DadosBloqueadoresJugador2);
@@ -321,20 +515,24 @@ void JuegoDosJugadores()
             InformarRondaActual(i,NombresJugadores[1],PuntajeRondaJugador2);
             MostrarLosDadosBloqueadores(DadosBloqueadoresJugador2);
             TiradaDeDados(DadosJugador2,DadosRestantes);
-             PuntosTirada=puntajeTirada(DadosBloqueadoresJugador2,DadosJugador2,DadosRestantes,Duplico);
+            PuntosTirada=puntajeTirada(DadosBloqueadoresJugador2,DadosJugador2,DadosRestantes,Duplico);
             DadosRestantes=DadosIgualesABloqueadores(DadosJugador2,DadosRestantes,DadosBloqueadoresJugador2);
-             MostrarLosPuntos(PuntosTirada);
-             PuntosDeLasRondas(DadosRestantes,PuntosTirada,PuntajeRondaJugador2,i-1);
-      system("pause");
-      system("cls");
-       InformarRondaActual(i,NombresJugadores[1],PuntajeRondaJugador2);
-       MostrarLosDadosBloqueadores(DadosBloqueadoresJugador2);
+            MostrarLosPuntos(PuntosTirada);
+            PuntosDeLasRondas(DadosRestantes,PuntosTirada,PuntajeRondaJugador2,i-1);
+            system("pause");
+            system("cls");
+            InformarRondaActual(i,NombresJugadores[1],PuntajeRondaJugador2);
+            MostrarLosDadosBloqueadores(DadosBloqueadoresJugador2);
 
             eleccionJugador=PreguntarPorTirada(Duplico,DadosRestantes);
-
 
         }
 
     }
+    system("cls");
 
+    CalcularPuntosTotalesJugadores(PuntajeRondaJugador1,PuntajeRondaJugador2,puntajeTotalesJugadores);
+    string jugadorGanador=AveriguarGanador(puntajeTotalesJugadores,NombresJugadores, Empate);
+    MostrarGanador(puntajeTotalesJugadores,NombresJugadores,jugadorGanador,Empate);
+    system("pause");
 }

@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+void DibujarDisenio(int cantidad, int Modelo);
 void JuegoDosJugadores();
 void PedirNombresJugadores(std::string NombreJugadores[]);
 int TirarUnDado();
@@ -15,3 +16,6 @@ bool ComprobarDadosIguales(int dados[], int Cantidad);
 int puntajeTirada(int DadosBloqueadores[],int dados[],int cantidad, bool &duplico);
 void MostrarLosPuntos(int PuntosObtenidos);
 void PuntosDeLasRondas(int CantidadDados,int PuntosXtirada,int PuntosTotalesRonda[],int ronda);
+void CalcularPuntosTotalesJugadores(int puntosRondasJugador1[], int puntosRondasJugador2[],int puntosTotalesJugador[]);
+void MostrarGanador(int puntosTotalesJugadores[],std::string NombreJugador[], std::string Ganador, bool empate);
+std::string AveriguarGanador(int puntosTotalesJugadores[],std::string NombreJugador[], bool &Empate);
