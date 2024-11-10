@@ -1,8 +1,10 @@
 #include <iostream>
 #include "Menu.h"
 #include "Juego.h"
-#include "Creditos.h"
 #include "ModoDosJugadores.h"
+#include "Estadisticas.h"
+#include "Creditos.h"
+
 #include "rlutil.h"
 using namespace std;
 void BarraDeCarga(){
@@ -130,40 +132,7 @@ HacerColorLetra(7);
     return opcion;
 }
 
-void EjecutarMenu(int opcionElegida)
-{
-    switch(opcionElegida)
-    {
-        int Entrar;
-    case 1:
-        Entrar=confimacion(opcionElegida);
-        ejecutarConfirmacion(Entrar,opcionElegida);
-        break;
 
-    case 2:
-        Entrar=confimacion(opcionElegida);
-        ejecutarConfirmacion(Entrar,opcionElegida);
-        break;
-    case 3:
-        Entrar=confimacion(opcionElegida);
-        ejecutarConfirmacion(Entrar,opcionElegida);
-        break;
-    case 4:
-        Entrar=confimacion(opcionElegida);
-        ejecutarConfirmacion(Entrar,opcionElegida);
-        break;
-    case 0:
-        Entrar=confimacion(opcionElegida);
-        ejecutarConfirmacion(Entrar,opcionElegida);
-        break;
-    default:
-        rlutil::setColor(rlutil::YELLOW);
-        cout << "Numero invalido...por favor ingrese un numero de [0 al 4]" << endl;
-        system("pause");
-        rlutil::setColor(rlutil::WHITE);
-        break;
-    }
-}
 
 int confimacion (int OpcionDeMenu)
 {
@@ -172,8 +141,8 @@ int confimacion (int OpcionDeMenu)
     switch(OpcionDeMenu)
     {
     case 1:
-        do
-        {
+        do{
+
             ///borra pantalla
             system("cls");
             ///pregunta si Error es verdadero
@@ -190,12 +159,12 @@ int confimacion (int OpcionDeMenu)
             rlutil::locate(25,6);
             cin>> Entrar;
 ///da una vuelta hasta que el usuario ingrese un numero valido
-        }
-        while(Entrar!=0 && Entrar!=1);
+        }while(Entrar!=0 && Entrar!=1);
+
         break;
     case 2:
-        do
-        {
+        do{
+
             ///borra pantalla
             system("cls");
             ///pregunta si Error es verdadero
@@ -212,8 +181,8 @@ int confimacion (int OpcionDeMenu)
             rlutil::locate(25,6);
             cin>> Entrar;
 ///da una vuelta hasta que el usuario ingrese un numero valido
-        }
-        while(Entrar!=0 && Entrar!=1);
+        }while(Entrar!=0 && Entrar!=1);
+
         break;
     case 3:
         do
@@ -289,7 +258,7 @@ int confimacion (int OpcionDeMenu)
 }
 
 
-void ejecutarConfirmacion(int DatoDeConfirmacion, int OpcionDeMenu)
+void ejecutarConfirmacion(int DatoDeConfirmacion, int OpcionDeMenu,int &puntajeMasAlto, string &NombreJugadorMasAlto)
 {
     system("cls");
     if(DatoDeConfirmacion==1)
@@ -297,15 +266,15 @@ void ejecutarConfirmacion(int DatoDeConfirmacion, int OpcionDeMenu)
         switch(OpcionDeMenu)
         {
         case 1:
-            JuegoUnJugador();
+            JuegoUnJugador(puntajeMasAlto,NombreJugadorMasAlto);
             FinDelJuego();
             break;
         case 2:
-            JuegoDosJugadores();
+            JuegoDosJugadores(puntajeMasAlto,NombreJugadorMasAlto);
             FinDelJuego();
             break;
         case 3:
-            cout << "estadisticas" << endl;
+MostrarEstadisticas(NombreJugadorMasAlto,puntajeMasAlto);
             break;
         case 4:
             Creditos();
@@ -318,3 +287,37 @@ void ejecutarConfirmacion(int DatoDeConfirmacion, int OpcionDeMenu)
     }
 }
 
+void EjecutarMenu(int opcionElegida, int &puntajeMasAlto, string &NombreJugadorMasAlto)
+{
+    switch(opcionElegida)
+    {
+        int Entrar;
+    case 1:
+        Entrar=confimacion(opcionElegida);
+        ejecutarConfirmacion(Entrar,opcionElegida, puntajeMasAlto, NombreJugadorMasAlto);
+        break;
+
+    case 2:
+        Entrar=confimacion(opcionElegida);
+        ejecutarConfirmacion(Entrar,opcionElegida, puntajeMasAlto, NombreJugadorMasAlto);
+        break;
+    case 3:
+        Entrar=confimacion(opcionElegida);
+        ejecutarConfirmacion(Entrar,opcionElegida, puntajeMasAlto, NombreJugadorMasAlto);
+        break;
+    case 4:
+        Entrar=confimacion(opcionElegida);
+        ejecutarConfirmacion(Entrar,opcionElegida, puntajeMasAlto, NombreJugadorMasAlto);
+        break;
+    case 0:
+        Entrar=confimacion(opcionElegida);
+        ejecutarConfirmacion(Entrar,opcionElegida, puntajeMasAlto, NombreJugadorMasAlto);
+        break;
+    default:
+        rlutil::setColor(rlutil::YELLOW);
+        cout << "Numero invalido...por favor ingrese un numero de [0 al 4]" << endl;
+        system("pause");
+        rlutil::setColor(rlutil::WHITE);
+        break;
+    }
+}

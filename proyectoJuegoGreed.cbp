@@ -34,6 +34,8 @@
 		</Compiler>
 		<Unit filename="Creditos.cpp" />
 		<Unit filename="Creditos.h" />
+		<Unit filename="Estadisticas.cpp" />
+		<Unit filename="Estadisticas.h" />
 		<Unit filename="Juego.cpp" />
 		<Unit filename="Juego.h" />
 		<Unit filename="Menu.cpp" />

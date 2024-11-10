@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include "ModoDosJugadores.h"
+#include "Estadisticas.h"
 #include "rlutil.h"
 
 using namespace std;
@@ -75,7 +76,7 @@ bool PreguntarPorTirada(bool &duplicoPuntos, int DadosRestantes)
         else
         {
             ColorLetra(15);
-            cout<< "¡POR CODICIOSO! se ha quedado sin dados para tirar, ha perdido todos los puntos de esta ronda"<<endl<<endl;
+            cout<< "LUSER! te quedaste sin dados para tirar, perdiste todos tus puntos de esta ronda"<<endl<<endl;
             system("pause");
             EleccionJugador=0;
             ColorLetra(14);
@@ -321,6 +322,7 @@ void MostrarGanador(int puntosTotalesJugadores[],string NombreJugador[],string g
     DibujarDisenio(1,186);
     rlutil::locate(92,7);
     DibujarDisenio(1,186);
+
     if(empate==false)
     {
         rlutil::locate(37,6);
@@ -429,24 +431,27 @@ void MostrarGanador(int puntosTotalesJugadores[],string NombreJugador[],string g
         rlutil::showcursor();
     }
 }
-string AveriguarGanador(int puntosTotalesJugadores[],std::string NombreJugador[], bool &Empate)
+string AveriguarGanador(int puntosTotalesJugadores[],std::string NombreJugador[], bool &Empate, int &puntajes, std::string &NombresJugadoresEnElTop)
 {
     string ganador;
     if(puntosTotalesJugadores[0] > puntosTotalesJugadores[1])
     {
         ganador= NombreJugador[0];
+        Estadisticas(puntosTotalesJugadores[0],NombreJugador[0], puntajes, NombresJugadoresEnElTop);
     }
     else if(puntosTotalesJugadores[1]>puntosTotalesJugadores[0])
     {
         ganador= NombreJugador[1];
+         Estadisticas(puntosTotalesJugadores[1],NombreJugador[1], puntajes, NombresJugadoresEnElTop);
     }
     else
     {
         Empate=true;
+        Estadisticas(puntosTotalesJugadores[0],NombreJugador[0], puntajes, NombresJugadoresEnElTop);
     }
     return ganador;
 }
-void JuegoDosJugadores()
+void JuegoDosJugadores(int &puntajes, string &NombresJugadoresEnElTop)
 {
     bool Empate=false;
     bool Duplico=false;
@@ -532,7 +537,7 @@ void JuegoDosJugadores()
     system("cls");
 
     CalcularPuntosTotalesJugadores(PuntajeRondaJugador1,PuntajeRondaJugador2,puntajeTotalesJugadores);
-    string jugadorGanador=AveriguarGanador(puntajeTotalesJugadores,NombresJugadores, Empate);
+    string jugadorGanador=AveriguarGanador(puntajeTotalesJugadores,NombresJugadores, Empate, puntajes, NombresJugadoresEnElTop);
     MostrarGanador(puntajeTotalesJugadores,NombresJugadores,jugadorGanador,Empate);
     system("pause");
 }

@@ -1,6 +1,7 @@
 #include <iostream>
 #include <ctime>
 #include "Juego.h"
+#include "Estadisticas.h"
 #include "rlutil.h"
 using namespace std;
 void HacerColorLetra(int Color){
@@ -96,7 +97,7 @@ bool PreguntaPorProximaTirada(int DadosRestantes)
     else
     {
         HacerColorLetra(15);
-        cout<< "¡POR CODICIOSO! se ha quedado sin dados para tirar, ha perdido todos los puntos de esta ronda"<<endl;
+        cout<< "¡LUSER! se ha quedado sin dados para tirar, ha perdido todos los puntos de esta ronda"<<endl;
         EleccionJugador=0;
         HacerColorLetra(14);
     }
@@ -309,9 +310,8 @@ bool Tirar;
 }
 return Tirar;
 }
-///-------------------------------------------------------------------------------------------------------ALTERNATIVA
 ///funcion que la llama menu.cpp
-void JuegoUnJugador()
+void JuegoUnJugador(int &puntajes, string &NombresJugadoresEnElTop)
 {
 ///declaracion y inicializacion de acumulador que guardara el resultado de la suma de las 3 rondas
     int puntosTotales=0;
@@ -380,6 +380,7 @@ void JuegoUnJugador()
     puntosTotales=CalcularPuntosTotalesRondas(puntajeRonda);
     ///muestra los puntosTotales
     MostrarPuntosTotales(puntosTotales);
+Estadisticas(puntosTotales,nombreJugador, puntajes, NombresJugadoresEnElTop);
 
 }
 

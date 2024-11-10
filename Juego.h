@@ -14,7 +14,7 @@ int puntajesRondas(int dados[],int cantidad, bool &duplico);
 void MostrarPuntos(int puntosObtenidos);
 void mostrarRondaActual(int ronda, std::string nombreJugador,int puntajeRonda[]);
 void ejecutarRondaActual(int dados[],int cantidad, std::string nombreJugador);
-void JuegoUnJugador();
+void JuegoUnJugador(int &puntajes, std::string &NombresJugadoresEnElTop);
 bool PreguntaPorProximaTirada(int DadosRestantes);
 void PuntosDeRonda(int CantidadDados,int PuntosXtirada,int PuntosTotalesRonda[],int ronda);
 int CalcularPuntosTotalesRondas(int puntosRondas[]);

@@ -4,10 +4,14 @@
 #include "Menu.h"
 #include "Juego.h"
 #include "rlutil.h"
+#include "Estadisticas.h"
 int main()
 {
     srand(time(0));
-    int opcion;
+     std::string NombreJugadorMasAlto;
+     int puntajeMasAlto=0;
+     int opcion;
+
     BarraDeCarga();
     do
     {
@@ -16,7 +20,7 @@ int main()
         ///borra pantalla
         system("cls");
         ///ejecuta el menu con la opcion que ingresa el usuario
-        EjecutarMenu(opcion);
+        EjecutarMenu(opcion,puntajeMasAlto,NombreJugadorMasAlto);
     }
     while(opcion != 0);
 
