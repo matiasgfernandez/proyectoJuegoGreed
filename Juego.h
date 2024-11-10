@@ -22,3 +22,4 @@ void MostrarPuntosTotales(int puntos);
 bool ProximaTirada(bool DuplicoPuntos, int DadosQueLeQuedan);
 void dibujarDados(int cantidadDados,int  dados[]);
 void HacerColorLetra(int Color);
+void  CartelRonda(int NumeroRonda);

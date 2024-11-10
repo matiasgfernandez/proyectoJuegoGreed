@@ -19,16 +19,16 @@
 
 1728778641 c:\programacion\juegogreed\proyectojuegogreed\juego.h
 
-1731213449 source:c:\git\proyectojuegogreed\juego.cpp
+1731261679 source:c:\git\proyectojuegogreed\juego.cpp
 	<iostream>
 	<ctime>
 	"Juego.h"
 	"Estadisticas.h"
 	"rlutil.h"
 
-1731211305 c:\git\proyectojuegogreed\juego.h
+1731264910 c:\git\proyectojuegogreed\juego.h
 
-1731254899 source:c:\git\proyectojuegogreed\menu.cpp
+1731263155 source:c:\git\proyectojuegogreed\menu.cpp
 	<iostream>
 	"Menu.h"
 	"Juego.h"
@@ -37,15 +37,13 @@
 	"Creditos.h"
 	"rlutil.h"
 
-1731216550 c:\git\proyectojuegogreed\menu.h
+1731263064 c:\git\proyectojuegogreed\menu.h
 
-1731216564 source:c:\git\proyectojuegogreed\main.cpp
+1731263064 source:c:\git\proyectojuegogreed\main.cpp
 	<iostream>
 	<ctime>
 	"Menu.h"
-	"Juego.h"
 	"rlutil.h"
-	"Estadisticas.h"
 
 1728950344 source:c:\users\mat\desktop\utn\git\proyectojuegogreed\juego.cpp
 	<iostream>
@@ -118,9 +116,9 @@
 1731255583 c:\git\proyectojuegogreed\mododosjugadores.h
 	<string>
 
-1731261624 source:c:\git\proyectojuegogreed\estadisticas.cpp
+1731263449 source:c:\git\proyectojuegogreed\estadisticas.cpp
 	<iostream>
 	"rlutil.h"
 
-1731257379 c:\git\proyectojuegogreed\estadisticas.h
+1731263198 c:\git\proyectojuegogreed\estadisticas.h
 

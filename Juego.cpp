@@ -279,13 +279,26 @@ void MostrarPuntosTotales(int puntos)
             ///lo ubica en la columna 40 y fila 2
              rlutil::locate(40,2);
     ///diseño de recuadro de ascii
-    cout<< (char)201 <<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205;
-    cout<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)187<<endl;
-    rlutil::locate(40,3);
-    cout<<(char)186<< "FINAL DE LAS RONDAS"<<(char)186<<endl;
+    Dibujolinea(1,201);
+    rlutil::locate(41,2);
+    Dibujolinea(20,205);
+     rlutil::locate(61,2);
+     Dibujolinea(1,187);
+
+        rlutil::locate(40,3);
+        Dibujolinea(1,186);
+      rlutil::locate(61,3);
+      Dibujolinea(1,186);
+
+    rlutil::locate(41,3);
+    cout<< "FINAL DE LAS RONDAS";
+
     rlutil::locate(40,4);
-    cout<<(char)200 <<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205;
-    cout<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)205<<(char)188<<endl;
+    Dibujolinea(1,200);
+    rlutil::locate(41,4);
+    Dibujolinea(20,205);
+      rlutil::locate(61,4);
+      Dibujolinea(1,188);
     }
     ///velocidad del parpadeo
     rlutil::msleep(100);
@@ -310,6 +323,47 @@ bool Tirar;
 }
 return Tirar;
 }
+void  CartelRonda(int NumeroRonda){
+rlutil::hidecursor();
+ for(int i=0;i<=10;i++){
+    system("cls");
+    ///muestra el mensaje solo cuando el numero es par
+    if(i%2==0){
+          ///hacer de color negro las letras
+            HacerColorLetra(14);
+            ///lo ubica en la columna 50 y fila 11
+             rlutil::locate(50,11);
+    ///diseño de recuadro de ascii
+    Dibujolinea(1,201);
+     rlutil::locate(51,11);
+     Dibujolinea(10,205);
+     rlutil::locate(61,11);
+     Dibujolinea(1,187);
+
+    rlutil::locate(50,12);
+    Dibujolinea(1,186);
+    rlutil::locate(61,12);
+    Dibujolinea(1,186);
+     rlutil::locate(52,12);
+    cout<< "RONDA  "<<NumeroRonda;
+
+    rlutil::locate(50,13);
+    Dibujolinea(1,200);
+    rlutil::locate(51,13);
+    Dibujolinea(10,205);
+    rlutil::locate(61,13);
+    Dibujolinea(1,188);
+    }
+    ///velocidad del parpadeo
+    rlutil::msleep(100);
+    }
+
+cout<<endl;
+rlutil::locate(40,14);
+system("pause");
+system("cls");
+   rlutil::showcursor();
+}
 ///funcion que la llama menu.cpp
 void JuegoUnJugador(int &puntajes, string &NombresJugadoresEnElTop)
 {
@@ -325,6 +379,7 @@ void JuegoUnJugador(int &puntajes, string &NombresJugadoresEnElTop)
 ///un for que recorre las tres rondas del juego
     for(int i=1; i<=3; i++)
     {
+        CartelRonda(i);
         ///la cantidad de dados que tiene el jugador
         int DadosRestantes = 5;
         ///guarda los valores de los dados

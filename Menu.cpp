@@ -229,36 +229,13 @@ int confimacion (int OpcionDeMenu)
         while(Entrar!=0 && Entrar!=1);
         break;
     case 0:
-    /*
-        do
-        {
-            ///borra pantalla
-            system("cls");
-            ///pregunta si Error es verdadero
-            if(Error==true)
-            {
-                ///da mensaje de error
-                cout<<endl<< "ERROR...Por favor ingrese un numero de 1 al 2"<<endl;
-            }
-///Error se pone en true, en caso de que el usuario ingrese un numero invalido el ciclo inexacto va a volver a dar una vuelta, dando asi un mensaje de error
-            Error=true;
-///pregunta si esta seguro de entrar
-            cout<<endl<< "Esta seguro que desea entrar al modo UN JUGADOR?  ingrese 1 o 0 [ 1 = si | 2 = no]"<<endl;
-            cout<<endl<< "ingrese opcion: ";
-            cin>> Entrar;
-///da una vuelta hasta que el usuario ingrese un numero valido
-        }
-        while(Entrar!=1 && Entrar!=2);
-        system("pause");
-        break;
-        */
         Entrar=true;
     }
     return Entrar;
 }
 
 
-void ejecutarConfirmacion(int DatoDeConfirmacion, int OpcionDeMenu,int &puntajeMasAlto, string &NombreJugadorMasAlto)
+void ejecutarConfirmacion(int DatoDeConfirmacion, int OpcionDeMenu,int &puntajeMasAlto, string &NombreJugadorMasAlto,bool &Jugaron)
 {
     system("cls");
     if(DatoDeConfirmacion==1)
@@ -268,13 +245,15 @@ void ejecutarConfirmacion(int DatoDeConfirmacion, int OpcionDeMenu,int &puntajeM
         case 1:
             JuegoUnJugador(puntajeMasAlto,NombreJugadorMasAlto);
             FinDelJuego();
+            Jugaron=true;
             break;
         case 2:
             JuegoDosJugadores(puntajeMasAlto,NombreJugadorMasAlto);
             FinDelJuego();
+            Jugaron=true;
             break;
         case 3:
-MostrarEstadisticas(NombreJugadorMasAlto,puntajeMasAlto);
+MostrarEstadisticas(NombreJugadorMasAlto,puntajeMasAlto, Jugaron);
             break;
         case 4:
             Creditos();
@@ -287,31 +266,31 @@ MostrarEstadisticas(NombreJugadorMasAlto,puntajeMasAlto);
     }
 }
 
-void EjecutarMenu(int opcionElegida, int &puntajeMasAlto, string &NombreJugadorMasAlto)
+void EjecutarMenu(int opcionElegida, int &puntajeMasAlto, string &NombreJugadorMasAlto,bool &Jugaron)
 {
     switch(opcionElegida)
     {
         int Entrar;
     case 1:
         Entrar=confimacion(opcionElegida);
-        ejecutarConfirmacion(Entrar,opcionElegida, puntajeMasAlto, NombreJugadorMasAlto);
+        ejecutarConfirmacion(Entrar,opcionElegida, puntajeMasAlto, NombreJugadorMasAlto, Jugaron);
         break;
 
     case 2:
         Entrar=confimacion(opcionElegida);
-        ejecutarConfirmacion(Entrar,opcionElegida, puntajeMasAlto, NombreJugadorMasAlto);
+        ejecutarConfirmacion(Entrar,opcionElegida, puntajeMasAlto, NombreJugadorMasAlto,Jugaron);
         break;
     case 3:
         Entrar=confimacion(opcionElegida);
-        ejecutarConfirmacion(Entrar,opcionElegida, puntajeMasAlto, NombreJugadorMasAlto);
+        ejecutarConfirmacion(Entrar,opcionElegida, puntajeMasAlto, NombreJugadorMasAlto,Jugaron);
         break;
     case 4:
         Entrar=confimacion(opcionElegida);
-        ejecutarConfirmacion(Entrar,opcionElegida, puntajeMasAlto, NombreJugadorMasAlto);
+        ejecutarConfirmacion(Entrar,opcionElegida, puntajeMasAlto, NombreJugadorMasAlto,Jugaron);
         break;
     case 0:
         Entrar=confimacion(opcionElegida);
-        ejecutarConfirmacion(Entrar,opcionElegida, puntajeMasAlto, NombreJugadorMasAlto);
+        ejecutarConfirmacion(Entrar,opcionElegida, puntajeMasAlto, NombreJugadorMasAlto,Jugaron);
         break;
     default:
         rlutil::setColor(rlutil::YELLOW);

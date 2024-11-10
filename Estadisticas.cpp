@@ -9,9 +9,9 @@ void Dibujolinea(int cantidad, int Modelo)
         cout<< (char) Modelo;
     }
 }
-void MostrarEstadisticas(string NombreJugadorEnElTop, int PuntajeMasAlto){
+void MostrarEstadisticas(string NombreJugadorEnElTop, int PuntajeMasAlto, bool Jugaron){
 
-if(PuntajeMasAlto!=0){
+if(Jugaron==true){
     rlutil::locate(45,6);
     Dibujolinea(1,201);
     rlutil::locate(46,6);
@@ -68,23 +68,23 @@ system("pause");
   rlutil::locate(16,11);
     Dibujolinea(1,201);
     rlutil::locate(17,11);
-    Dibujolinea(86, 205);
-    rlutil::locate(103,11);
+    Dibujolinea(89, 205);
+    rlutil::locate(106,11);
     Dibujolinea(1,187);
 
     rlutil::locate(16,12);
     Dibujolinea(1,186);
- rlutil::locate(103,12);
+ rlutil::locate(106,12);
     Dibujolinea(1,186);
 
         rlutil::locate(18,12);
-     cout<< "AUN NO SE HA JUGADO NINGUN MODO, POR FAVOR JUEGA PARA PODER COMPETIR CON LOS MEJORES";
+     cout<< "AUN NO SE HA JUGADO NINGUN MODO, POR FAVOR JUEGA PARA PODER COMPETIR CONTRA LOS MEJORES";
 
             rlutil::locate(16,13);
     Dibujolinea(1,200);
     rlutil::locate(17,13);
-    Dibujolinea(86, 205);
-   rlutil::locate(103,13);
+    Dibujolinea(89, 205);
+   rlutil::locate(106,13);
    Dibujolinea(1,188);
 
     cout<<endl;

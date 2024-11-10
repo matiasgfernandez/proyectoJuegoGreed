@@ -2,12 +2,11 @@
 #include <iostream>
 #include <ctime>
 #include "Menu.h"
-#include "Juego.h"
 #include "rlutil.h"
-#include "Estadisticas.h"
 int main()
 {
     srand(time(0));
+    bool Jugaron=false;
      std::string NombreJugadorMasAlto;
      int puntajeMasAlto=0;
      int opcion;
@@ -20,7 +19,7 @@ int main()
         ///borra pantalla
         system("cls");
         ///ejecuta el menu con la opcion que ingresa el usuario
-        EjecutarMenu(opcion,puntajeMasAlto,NombreJugadorMasAlto);
+        EjecutarMenu(opcion,puntajeMasAlto,NombreJugadorMasAlto, Jugaron);
     }
     while(opcion != 0);
 
