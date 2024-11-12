@@ -44,7 +44,7 @@
 	#include <string>
 	#include <cstdio> // for getch()
 	/// Namespace forward declarations
-	namespace rlutil {
+	namespace rlutil{
 		RLUTIL_INLINE void locate(int x, int y);
 	}
 #else

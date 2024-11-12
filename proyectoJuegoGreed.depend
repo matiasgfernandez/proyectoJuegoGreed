@@ -19,16 +19,16 @@
 
 1728778641 c:\programacion\juegogreed\proyectojuegogreed\juego.h
 
-1731261679 source:c:\git\proyectojuegogreed\juego.cpp
+1731372900 source:c:\git\proyectojuegogreed\juego.cpp
 	<iostream>
 	<ctime>
 	"Juego.h"
 	"Estadisticas.h"
 	"rlutil.h"
 
-1731264910 c:\git\proyectojuegogreed\juego.h
+1731372900 c:\git\proyectojuegogreed\juego.h
 
-1731263155 source:c:\git\proyectojuegogreed\menu.cpp
+1731371646 source:c:\git\proyectojuegogreed\menu.cpp
 	<iostream>
 	"Menu.h"
 	"Juego.h"
@@ -37,9 +37,9 @@
 	"Creditos.h"
 	"rlutil.h"
 
-1731263064 c:\git\proyectojuegogreed\menu.h
+1731371646 c:\git\proyectojuegogreed\menu.h
 
-1731263064 source:c:\git\proyectojuegogreed\main.cpp
+1731366469 source:c:\git\proyectojuegogreed\main.cpp
 	<iostream>
 	<ctime>
 	"Menu.h"
@@ -88,11 +88,11 @@
 
 1730046505 c:\git\proyectojuegogreed\creditos.h
 
-1730393793 source:c:\git\proyectojuegogreed\creditos.cpp
+1731370494 source:c:\git\proyectojuegogreed\creditos.cpp
 	<iostream>
 	"Creditos.h"
 
-1730336367 c:\git\proyectojuegogreed\rlutil.h
+1731296110 c:\git\proyectojuegogreed\rlutil.h
 	<iostream>
 	<string>
 	<cstdio>
@@ -106,17 +106,17 @@
 	<sys/types.h>
 	<sys/time.h>
 
-1731255174 source:c:\git\proyectojuegogreed\mododosjugadores.cpp
+1731356488 source:c:\git\proyectojuegogreed\mododosjugadores.cpp
 	<iostream>
 	<ctime>
 	"ModoDosJugadores.h"
 	"Estadisticas.h"
 	"rlutil.h"
 
-1731255583 c:\git\proyectojuegogreed\mododosjugadores.h
+1731295891 c:\git\proyectojuegogreed\mododosjugadores.h
 	<string>
 
-1731263449 source:c:\git\proyectojuegogreed\estadisticas.cpp
+1731295857 source:c:\git\proyectojuegogreed\estadisticas.cpp
 	<iostream>
 	"rlutil.h"
 

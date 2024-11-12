@@ -334,7 +334,7 @@ void MostrarGanador(int puntosTotalesJugadores[],string NombreJugador[],string g
         rlutil::locate(73,6);
         DibujarDisenio(1,187);
         rlutil::locate(39,7);
-        cout<< "GANADOR JUGADOR "<<ganador;
+        cout<< "EL GANADOR ES... "<<ganador;
         rlutil::locate(73,7);
         DibujarDisenio(1,186);
         rlutil::locate(37,8);
@@ -414,8 +414,32 @@ void MostrarGanador(int puntosTotalesJugadores[],string NombreJugador[],string g
         DibujarDisenio(1,186);
         rlutil::locate(92,13);
         DibujarDisenio(1,186);
-        rlutil::locate(13,13);
 
+             rlutil::locate(11,8);
+              DibujarDisenio(1,186);
+    rlutil::locate(11,9);
+      DibujarDisenio(1,186);
+            rlutil::locate(11,10);
+              DibujarDisenio(1,186);
+    rlutil::locate(11,11);
+      DibujarDisenio(1,186);
+     rlutil::locate(11,12);
+       DibujarDisenio(1,186);
+       rlutil::locate(11,13);
+        DibujarDisenio(1,186);
+
+        rlutil::locate(92,8);
+        DibujarDisenio(1,186);
+        rlutil::locate(92,9);
+        DibujarDisenio(1,186);
+        rlutil::locate(92,10);
+        DibujarDisenio(1,186);
+        rlutil::locate(92,11);
+        DibujarDisenio(1,186);
+        rlutil::locate(92,12);
+        DibujarDisenio(1,186);
+
+         rlutil::locate(13,13);
         cout<< "PUNTOS TOTALES OBTENIDOS DEL JUGADOR "<<NombreJugador[1]<<": "<< puntosTotalesJugadores[1];
         rlutil::locate(11,14);
         DibujarDisenio(1,186);
@@ -451,6 +475,75 @@ string AveriguarGanador(int puntosTotalesJugadores[],std::string NombreJugador[]
     }
     return ganador;
 }
+void  MostrarRonda(int NumeroRonda){
+rlutil::hidecursor();
+ for(int i=0;i<=10;i++){
+    system("cls");
+    ///muestra el mensaje solo cuando el numero es par
+    if(i%2==0){
+          ///hacer de color negro las letras
+            ColorLetra(14);
+            ///lo ubica en la columna 50 y fila 11
+             rlutil::locate(50,11);
+    ///diseño de recuadro de ascii
+    Dibujolinea(1,201);
+     rlutil::locate(51,11);
+     Dibujolinea(10,205);
+     rlutil::locate(61,11);
+     Dibujolinea(1,187);
+
+    rlutil::locate(50,12);
+    Dibujolinea(1,186);
+    rlutil::locate(61,12);
+    Dibujolinea(1,186);
+     rlutil::locate(52,12);
+    cout<< "RONDA  "<<NumeroRonda;
+
+    rlutil::locate(50,13);
+    Dibujolinea(1,200);
+    rlutil::locate(51,13);
+    Dibujolinea(10,205);
+    rlutil::locate(61,13);
+    Dibujolinea(1,188);
+    }
+    ///velocidad del parpadeo
+    rlutil::msleep(100);
+    }
+
+cout<<endl;
+rlutil::locate(40,14);
+system("pause");
+system("cls");
+   rlutil::showcursor();
+}
+void MostrarTurno(string NombreJugador){
+
+ rlutil::locate(37,6);
+        DibujarDisenio(1,201);
+        rlutil::locate(38,6);
+        DibujarDisenio(35,205);
+        rlutil::locate(37,7);
+        DibujarDisenio(1,186);
+        rlutil::locate(73,6);
+        DibujarDisenio(1,187);
+        rlutil::locate(39,7);
+
+cout<< "TURNO DEL JUGADOR "<<NombreJugador;
+
+  rlutil::locate(73,7);
+        DibujarDisenio(1,186);
+
+        rlutil::locate(37,8);
+        DibujarDisenio(1,200);
+        rlutil::locate(38,8);
+        DibujarDisenio(35,205);
+        rlutil::locate(73,8);
+        DibujarDisenio(1,188);
+
+cout<<endl;
+system("pause");
+system("cls");
+}
 void JuegoDosJugadores(int &puntajes, string &NombresJugadoresEnElTop)
 {
     bool Empate=false;
@@ -473,6 +566,9 @@ void JuegoDosJugadores(int &puntajes, string &NombresJugadoresEnElTop)
         bool eleccionJugador;
 
         int  PuntosTirada;
+
+        MostrarRonda(i);
+        MostrarTurno(NombresJugadores[0]);
         ///informa la ronda actual, de cual jugador  es el turno y sus puntajes en cada ronda
         InformarRondaActual(i,NombresJugadores[0],PuntajeRondaJugador1);
         ///tira los dados bloqueadores de ambos jugadores
@@ -509,6 +605,8 @@ void JuegoDosJugadores(int &puntajes, string &NombresJugadoresEnElTop)
         system("cls");
         DadosRestantes=5;
         Duplico=false;
+
+        MostrarTurno(NombresJugadores[1]);
         ///preguntar si quiere tirar una tirada
         InformarRondaActual(i,NombresJugadores[1],PuntajeRondaJugador2);
         MostrarLosDadosBloqueadores(DadosBloqueadoresJugador2);

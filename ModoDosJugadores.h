@@ -19,3 +19,5 @@ void PuntosDeLasRondas(int CantidadDados,int PuntosXtirada,int PuntosTotalesRond
 void CalcularPuntosTotalesJugadores(int puntosRondasJugador1[], int puntosRondasJugador2[],int puntosTotalesJugador[]);
 void MostrarGanador(int puntosTotalesJugadores[],std::string NombreJugador[], std::string Ganador, bool empate);
 std::string AveriguarGanador(int puntosTotalesJugadores[],std::string NombreJugador[], bool &Empate, int &puntajes, std::string &NombresJugadoresEnElTop);
+void  MostrarRonda(int NumeroRonda);
+void MostrarTurno(std::string NombreJugador);

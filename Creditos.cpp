@@ -1,26 +1,20 @@
 #include <iostream>
 #include "Creditos.h"
 using namespace std;
+
 void Creditos(){
 
-cout<<endl<< "            ___________________________________"<<endl ;
-cout<< "           |                                   |"<<endl;
-cout<< "           |CREADORES DEL JUEGO: EQUIPO MASTER |"<<endl;
-cout<< "           |___________________________________|"<<endl;
+   cout<<endl<< "            ___________________________________"<<endl ;
+   cout<< "           |                                   |"<<endl;
+   cout<< "           |CREADORES DEL JUEGO: EQUIPO SOLARI |"<<endl;
+   cout<< "           |___________________________________|"<<endl;
 
-cout<< "      ________       ________________       ________________"<<endl;
-cout<< "     |        |     |                |     |                |"<<endl;
-cout<< "     | LEGAJO |     |    APELLIDO    |     |     NOMBRE     |"<<endl;
-cout<< "     |________|     |________________|     |________________|"<<endl;
-cout<< "     | 31903  |     | MORALES VARELA |     | KIEFER GABRIEL |"<<endl;
-cout<< "     |________|     |________________|     |________________|"<<endl;
-cout<< "     |        |     |                |     |                |"<<endl;
-cout<< "     |________|     |________________|     |________________|"<<endl;
-cout<< "     |        |     |                |     |                |"<<endl;
-cout<< "     |________|     |________________|     |________________|"<<endl;
+   cout<< "      ________       ________________       ________________"<<endl;
+   cout<< "     |        |     |                |     |                |"<<endl;
+   cout<< "     | LEGAJO |     |    APELLIDO    |     |     NOMBRE     |"<<endl;
+   cout<< "     |________|     |________________|     |________________|"<<endl;
+   cout<< "     | 31903  |     | MORALES VARELA |     | KIEFER GABRIEL |"<<endl;
+   cout<< "     |________|     |________________|     |________________|"<<endl;
 
-
-
-
-
+   system("pause");
 }

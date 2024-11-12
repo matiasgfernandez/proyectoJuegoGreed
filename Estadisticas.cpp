@@ -94,7 +94,7 @@ system("pause");
 
 void Estadisticas(int puntos, string nombre, int &puntajes, string &NombresJugadoresEnElTop){
 
- if(puntos>puntajes){
+ if(puntos>=puntajes){
     puntajes=puntos;
     NombresJugadoresEnElTop=nombre;
 

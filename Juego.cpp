@@ -4,26 +4,35 @@
 #include "Estadisticas.h"
 #include "rlutil.h"
 using namespace std;
-void HacerColorLetra(int Color){
-if(Color!=4){
-rlutil::setColor(Color);
-}
-}
-/// 1. pide nombre del jugador
-string PedirNombreJugador()
-{
-    (cin.ignore());
-    string nombre;
-   HacerColorLetra(14);
-    rlutil::locate(4,3);
 
+void HacerColorLetra(int Color){
+
+    if(Color!=4){
+        rlutil::setColor(Color);
+    }
+}
+
+/// 1. pide nombre del jugador
+string PedirNombreJugador(){
+
+    ///ignora el ultimo enter
+    (cin.ignore());
+
+    string nombre;
+    HacerColorLetra(14);
+
+     rlutil::locate(4,3);
     cout << "INGRESE SU NOMBRE:";
     getline(cin, nombre);
-    return nombre;
+
+ return nombre;
 }
+
 void dibujarDados(int cantidadDados,int  dados[]){
-    HacerColorLetra(15);
-/// Imprimir los dados uno al lado del otro
+
+  HacerColorLetra(15);
+
+    /// Imprimir los dados uno al lado del otro
     for (int j = 0; j < cantidadDados; j++) {
         cout << "   ___  ";
     }
@@ -43,27 +52,20 @@ void dibujarDados(int cantidadDados,int  dados[]){
         cout << "  |___| ";
     }
     cout << endl;
-    HacerColorLetra(14);
-}
-/// 2. muestra el nombre del jugador
-void MostrarNombreJugador1(string nombre)
-{
-    cout << "Turno del jugador: " << nombre << endl;
+
+  HacerColorLetra(14);
 }
 
-/// 3. funcion que tira un dado
-int TirarDado()
-{
-    return rand() % 6 + 1;
+///  funcion que tira un dado
+int TirarDado(){
+ return rand() % 6 + 1;
 }
 
-/// 4. funcion que tira los dados bloqueadores
-void TirarDadosBloqueadores(int (DadosBloqueadoresJugador1)[], int (DadosBloqueadoresJugador2)[])
-{
-    for (int i = 0; i < 2; i++)
-    {
+///  funcion que tira los dados bloqueadores
+void TirarDadosBloqueadores(int (DadosBloqueadoresJugador1)[]){
+
+    for (int i = 0; i < 2; i++){
         DadosBloqueadoresJugador1[i] = TirarDado();
-        DadosBloqueadoresJugador2[i] = TirarDado();
     }
 }
 
@@ -312,17 +314,20 @@ void MostrarPuntosTotales(int puntos)
 rlutil::showcursor();
 }
 bool ProximaTirada(bool DuplicoPuntos, int DadosQueLeQuedan){
-bool Tirar;
-    if(DuplicoPuntos==false){
+
+ bool Tirar;
+
+     if(DuplicoPuntos==false){
             ///preguna al jugador si quiere tirar una proxima tirada
             Tirar=PreguntaPorProximaTirada(DadosQueLeQuedan);
-}else
-{
-    cout<<endl<< "Tirada de dados obligatoria"<<endl;
-    Tirar=true;
-}
+     }else{
+              cout<<endl<< "Tirada de dados obligatoria"<<endl;
+              Tirar=true;
+     }
+
 return Tirar;
 }
+
 void  CartelRonda(int NumeroRonda){
 rlutil::hidecursor();
  for(int i=0;i<=10;i++){
@@ -386,12 +391,10 @@ void JuegoUnJugador(int &puntajes, string &NombresJugadoresEnElTop)
         int dados[DadosRestantes];
         ///guarda los valores de los dados bloqueadores del jugador 1
         int DadosBloqueadoresJugador1[2] {};
-               ///guarda los valores de los dados bloqueadores del jugador 2
-        int DadosBloqueadoresJugador2[2] {};
         ///muestra numero de ronda, nombre del jugador, puntaje total
         mostrarRondaActual(i,nombreJugador,puntajeRonda);
         /// Tira los dados bloqueadores de los dos jugadores y lo guarda en las variables
-        TirarDadosBloqueadores(DadosBloqueadoresJugador1, DadosBloqueadoresJugador2);
+        TirarDadosBloqueadores(DadosBloqueadoresJugador1);
         /// muestra los dados bloqueadores
         MostrarDadosBloqueadores(DadosBloqueadoresJugador1);
 ///pregunta al jugador si quiere tirar los dados y lo guarda en la variable eleccionJugador
