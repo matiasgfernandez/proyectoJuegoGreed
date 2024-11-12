@@ -463,6 +463,6 @@ void JuegoUnJugador(int &puntajes, string &NombresJugadoresEnElTop){
     puntosTotales=CalcularPuntosTotalesRondas(puntajeRonda);
     ///muestra los puntosTotales
     MostrarPuntosTotales(puntosTotales);
-Estadisticas(puntosTotales,nombreJugador, puntajes, NombresJugadoresEnElTop);
 
+    Estadisticas(puntosTotales,nombreJugador, puntajes, NombresJugadoresEnElTop);
 }

@@ -28,7 +28,7 @@
 
 1731372900 c:\git\proyectojuegogreed\juego.h
 
-1731371646 source:c:\git\proyectojuegogreed\menu.cpp
+1731381387 source:c:\git\proyectojuegogreed\menu.cpp
 	<iostream>
 	"Menu.h"
 	"Juego.h"
@@ -113,7 +113,7 @@
 	"Estadisticas.h"
 	"rlutil.h"
 
-1731295891 c:\git\proyectojuegogreed\mododosjugadores.h
+1731382264 c:\git\proyectojuegogreed\mododosjugadores.h
 	<string>
 
 1731295857 source:c:\git\proyectojuegogreed\estadisticas.cpp
