@@ -287,7 +287,31 @@ void ejecutarConfirmacion(int DatoDeConfirmacion, int OpcionDeMenu,int &puntajeM
             break;
 
             case 0:
-                    cout << "Gracias por jugar a nuestro juego :)" << endl;
+                   rlutil::locate(37,8);
+                   DibujarLinea(45,178);
+
+                   rlutil::locate(37,9);
+                   DibujarLinea(2,178);
+                   rlutil::locate(37,10);
+                   DibujarLinea(2,178);
+                   rlutil::locate(37,11);
+                   DibujarLinea(2,178);
+
+                   rlutil::locate(80,9);
+                   DibujarLinea(2,178);
+                   rlutil::locate(80,10);
+                   DibujarLinea(2,178);
+                   rlutil::locate(80,11);
+                   DibujarLinea(2,178);
+
+                   rlutil::locate(37,12);
+                   DibujarLinea(45,178);
+
+                    rlutil::locate(41,10);
+                    cout << "Gracias por jugar a nuestro juego :)";
+
+                    rlutil::locate(41,13);
+                    system("pause");
             break;
          }
     }
@@ -326,7 +350,10 @@ void EjecutarMenu(int opcionElegida, int &puntajeMasAlto, string &NombreJugadorM
 
         default:
                    rlutil::setColor(rlutil::YELLOW);
-                   cout << "Numero invalido...por favor ingrese un numero de [0 al 4]" << endl;
+
+
+                   rlutil::locate(30,10);
+                   cout << "NUMERO INVALIDO...por favor ingrese un numero de [0 al 4]" << endl;
                    system("pause");
                    rlutil::setColor(rlutil::WHITE);
         break;
