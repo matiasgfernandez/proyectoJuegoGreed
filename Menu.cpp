@@ -39,13 +39,84 @@ rlutil::msleep(rand()%300);
     }
 }
 
+void MensajeDeError(int Desde, int Hasta){
+
+  rlutil::hidecursor();
+                   system("cls");
+                   rlutil::setBackgroundColor(0);
+                   rlutil::locate(26,9);
+                   DibujarLinea(65,32);
+                   rlutil::locate(88,9);
+                   DibujarLinea(1,88);
+                   rlutil::locate(55,9);
+                   cout<< "E R R O R !";
+
+
+                   rlutil::setColor(1);
+                   rlutil::locate(89,10);
+                   DibujarLinea(2,219);
+                   rlutil::locate(89,11);
+                   DibujarLinea(2,219);
+                   rlutil::locate(89,12);
+                   DibujarLinea(2,219);
+                   rlutil::locate(89,13);
+                   DibujarLinea(2,219);
+                   rlutil::locate(89,14);
+                   DibujarLinea(2,219);
+                   rlutil::locate(89,15);
+                   DibujarLinea(2,219);
+
+                   rlutil::locate(26,10);
+                   DibujarLinea(2,219);
+                   rlutil::locate(26,11);
+                   DibujarLinea(2,219);
+                   rlutil::locate(26,12);
+                   DibujarLinea(2,219);
+                   rlutil::locate(26,13);
+                   DibujarLinea(2,219);
+                   rlutil::locate(26,14);
+                   DibujarLinea(2,219);
+                   rlutil::locate(26,15);
+                   DibujarLinea(2,219);
+
+                   rlutil::setBackgroundColor(1);
+                   rlutil::locate(26,15);
+                   DibujarLinea(65,32);
+
+
+                    rlutil::setBackgroundColor(15);
+                    rlutil::locate(28,10);
+                    DibujarLinea(61,32);
+                    rlutil::locate(28,11);
+                    DibujarLinea(61,32);
+                    rlutil::locate(28,12);
+                    DibujarLinea(61,32);
+                    rlutil::locate(28,13);
+                    DibujarLinea(61,32);
+                    rlutil::locate(28,14);
+                    DibujarLinea(61,32);
+
+                   rlutil::setColor(4);
+                   rlutil::locate(30,11);
+                   cout << "NUMERO INVALIDO...por favor ingrese un numero de "<<Desde<< " al "<< Hasta<< endl;
+                   rlutil::locate(34,13);
+                   cout<< "presione cualquier letra para volver a intentarlo";
+                   rlutil::setColor(14);
+
+                   rlutil::setBackgroundColor(rlutil::RED);
+                   system("pause>nul");
+                   system("cls");
+  rlutil::showcursor();
+}
+
 void MostrarOpcion(int columna, int fila){
+
     rlutil::locate(columna,fila);
-    cout<<  "*************************"<<endl;
-
-    cout<< " *ingrese alguna opcion:"<<" *"<<endl;
-
-    cout<< " *"<< "************************"<<endl;
+    cout<<"*************************";
+    rlutil::locate(columna,fila+1);
+    cout<<"*ingrese alguna opcion:"<<" *";
+    rlutil::locate(columna,fila+2);
+    cout<<"*"<< "************************";
 }
 
 void DibujarLinea(int cantidad, int Modelo){
@@ -158,6 +229,41 @@ HacerColorLetra(7);
  return opcion;
 }
 
+int CartelDeConfirmacion(){
+
+  int Respuesta;
+
+            HacerColorLetra(15);
+            rlutil::locate(17,3);
+            DibujarLinea(86,177);
+
+            rlutil::locate(17,4);
+            DibujarLinea(2,177);
+            rlutil::locate(17,5);
+            DibujarLinea(2,177);
+            rlutil::locate(17,6);
+            DibujarLinea(2,177);
+
+            rlutil::locate(101,4);
+            DibujarLinea(2,177);
+            rlutil::locate(101,5);
+            DibujarLinea(2,177);
+            rlutil::locate(101,6);
+            DibujarLinea(2,177);
+
+            rlutil::locate(17,7);
+            DibujarLinea(86,177);
+
+            ///pregunta si esta seguro de entrar
+             rlutil::locate(21,5);
+            cout<< "Esta seguro que desea entrar a los CREDITOS?  ingrese 1 o 0 [ 1 = si | 0 = no]";
+            MostrarOpcion(43,9);
+            rlutil::locate(66,10);
+            cin>> Respuesta;
+            HacerColorLetra(14);
+  return Respuesta;
+}
+
 int confimacion (int OpcionDeMenu){
 
  int Entrar;
@@ -172,16 +278,13 @@ int confimacion (int OpcionDeMenu){
                  ///pregunta si Error es verdadero
                  if(Error==true){
                    ///da mensaje de error
-                  cout<<endl<< "ERROR...Por favor ingrese un numero de 0 al 1"<<endl;
+                  MensajeDeError(0,1);
                  }
 
-///Error se pone en true, en caso de que el usuario ingrese un numero invalido el ciclo inexacto va a volver a dar una vuelta, dando asi un mensaje de error
+            ///Error se pone en true, en caso de que el usuario ingrese un numero invalido el ciclo inexacto va a volver a dar una vuelta, dando asi un mensaje de error
             Error=true;
-///pregunta si esta seguro de entrar
-            cout<<endl<< "Esta seguro que desea entrar al modo UN JUGADOR?  ingrese 1 o 0 [ 1 = si | 0 = no]"<<endl;
-            MostrarOpcion(2,5);
-            rlutil::locate(25,6);
-            cin>> Entrar;
+
+            Entrar=CartelDeConfirmacion();
 
                ///da una vuelta hasta que el usuario ingrese un numero valido
             }while(Entrar!=0 && Entrar!=1);
@@ -195,15 +298,12 @@ int confimacion (int OpcionDeMenu){
                if(Error==true){
 
                    ///da mensaje de error
-                   cout<<endl<< "ERROR...Por favor ingrese un numero de 0 al 1"<<endl;
+                   MensajeDeError(0,1);
                 }
              ///Error se pone en true, en caso de que el usuario ingrese un numero invalido el ciclo inexacto va a volver a dar una vuelta, dando asi un mensaje de error
             Error=true;
-            ///pregunta si esta seguro de entrar
-            cout<<endl<< "Esta seguro que desea entrar al modo DOS JUGADORES?  ingrese 1 o 0 [ 1 = si | 0 = no]"<<endl;
-            MostrarOpcion(2,5);
-            rlutil::locate(25,6);
-            cin>> Entrar;
+
+            Entrar=CartelDeConfirmacion();
            ///da una vuelta hasta que el usuario ingrese un numero valido
            }while(Entrar!=0 && Entrar!=1);
     break;
@@ -217,16 +317,13 @@ int confimacion (int OpcionDeMenu){
                 if(Error==true){
 
                 ///da mensaje de error
-                cout<<endl<< "ERROR...Por favor ingrese un numero de 0 al 1"<<endl;
+                MensajeDeError(0,1);
                }
 
             ///Error se pone en true, en caso de que el usuario ingrese un numero invalido el ciclo inexacto va a volver a dar una vuelta, dando asi un mensaje de error
             Error=true;
-            ///pregunta si esta seguro de entrar
-            cout<<endl<< "Esta seguro que desea entrar a las ESTADISTICAS?  ingrese 1 o 0 [ 1 = si | 0 = no]"<<endl;
-            MostrarOpcion(2,5);
-            rlutil::locate(25,6);
-            cin>> Entrar;
+
+            Entrar=CartelDeConfirmacion();
        ///da una vuelta hasta que el usuario ingrese un numero valido
        }while(Entrar!=0 && Entrar!=1);
     break;
@@ -238,18 +335,15 @@ int confimacion (int OpcionDeMenu){
                ///pregunta si Error es verdadero
                 if(Error==true){
 
-                  ///da mensaje de error
-                  cout<<endl<< "ERROR...Por favor ingrese un numero de 0 al 1"<<endl;
+                 MensajeDeError(0,1);
                 }
             ///Error se pone en true, en caso de que el usuario ingrese un numero invalido el ciclo inexacto va a volver a dar una vuelta, dando asi un mensaje de error
             Error=true;
-            ///pregunta si esta seguro de entrar
-            cout<<endl<< "Esta seguro que desea entrar a los CREDITOS?  ingrese 1 o 0 [ 1 = si | 0 = no]"<<endl;
-            MostrarOpcion(2,5);
-            rlutil::locate(25,6);
-            cin>> Entrar;
+
+            Entrar=CartelDeConfirmacion();
 ///da una vuelta hasta que el usuario ingrese un numero valido
         }while(Entrar!=0 && Entrar!=1);
+
     break;
 
     case 0:
@@ -349,13 +443,8 @@ void EjecutarMenu(int opcionElegida, int &puntajeMasAlto, string &NombreJugadorM
         break;
 
         default:
-                   rlutil::setColor(rlutil::YELLOW);
 
-
-                   rlutil::locate(30,10);
-                   cout << "NUMERO INVALIDO...por favor ingrese un numero de [0 al 4]" << endl;
-                   system("pause");
-                   rlutil::setColor(rlutil::WHITE);
+                 MensajeDeError(0,4);
         break;
     }
 }

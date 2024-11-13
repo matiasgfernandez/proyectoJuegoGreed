@@ -120,8 +120,10 @@ void TiradaDeLosDados(int Dados[], int Cantidad, int DadosBloqueadoresJugador1[]
 
     cout<<"Lanzando dados..."<<endl<<endl;
     for (int i = 0; i < Cantidad; i++){
-        Dados[i] = TirarDado();
+ ///       Dados[i] = TirarDado();
+     cin>>Dados[i];
     }
+
    dibujarDados(Cantidad,Dados);
 }
 
